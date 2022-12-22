@@ -1,0 +1,40 @@
+NAME 	= Zombie
+
+CC 		= c++
+CFLAGS	= -Wall -Wextra -Werror -std=c++98
+RM		= rm -rf
+
+OBJDIR	= .objFiles
+
+SRCS	= main.cpp zombieHorde.cpp Zombie.cpp
+OBJS	= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
+HEADER	= Zombie.hpp
+
+#Colors:
+GREEN		=	\e[92;5;118m
+YELLOW		=	\e[93;5;226m
+GRAY		=	\e[33;2;37m
+RESET		=	\e[0m
+CURSIVE		=	\e[33;3m
+
+all: $(NAME)
+	
+$(NAME): $(OBJS) $(HEADER)
+	@$(CC) $(OBJS) -o $(NAME)
+	@printf "$(_SUCCESS) $(GREEN)- Executable ready.\n$(RESET)"
+
+$(OBJDIR)/%.o: %.cpp $(HEADER)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	@$(RM) $(OBJDIR) $(OBJS)
+	@printf "$(YELLOW) - Object files removed.$(RESET)\n"
+
+fclean: clean
+	@$(RM) $(NAME)
+	@printf "$(YELLOW) - Executable removed.$(RESET)\n"
+
+re: fclean all
+
+.PHONY: all clean fclean re
