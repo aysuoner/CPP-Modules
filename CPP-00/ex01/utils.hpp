@@ -19,7 +19,6 @@ void	put_space(int len);
 void	top_framework(void);
 int		space_string(string info);
 int		is_valid_num(string number);
-int		is_valid_num(string number);
 void	info_ctrl(string *input, string display, int type);
 void	get_info(string info[5]);
 

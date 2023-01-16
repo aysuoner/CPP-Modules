@@ -1,21 +1,18 @@
 #ifndef WEAPON_HPP
 # define WEAPON_HPP
 
+#include "HumanA.hpp"
 #include <iostream>
-
-using std:: cout;
-using std:: string;
-using std:: endl;
 
 class Weapon
 {
-	private:
-		string	_type;
-	public:
-		Weapon();
-		~Weapon();
-		string	getType() const;
-		void	setType(string type);
+private:
+	std::string type;
+public:
+	Weapon(std::string type);
+	~Weapon();
+	const	std::string& getType();
+	void	setType(std::string type);
 };
 
 #endif

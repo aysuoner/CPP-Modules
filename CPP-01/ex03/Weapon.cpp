@@ -5,29 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/15 20:11:03 by aoner             #+#    #+#             */
-/*   Updated: 2022/12/15 20:15:09 by aoner            ###   ########.fr       */
+/*   Created: 2023/01/16 21:48:38 by aoner             #+#    #+#             */
+/*   Updated: 2023/01/16 23:36:50 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Weapon.hpp"
 
-Weapon::Weapon()
+Weapon::Weapon(std::string type)
 {
-	cout << "created weapon_obj..."	<< endl;	
+	this->type = type;
 }
 
 Weapon::~Weapon()
 {
-	cout << "destroyed weapon obj" << endl;
 }
 
-string	Weapon::getType() const
+const std::string& Weapon::getType()
 {
-	return _type;
+	return type;
 }
 
-void	Weapon::setType(string type)
+void Weapon::setType(std::string type)
 {
-	Weapon::_type = type;
+	this->type = type;
 }
