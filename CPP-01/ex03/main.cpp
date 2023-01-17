@@ -6,9 +6,11 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 21:29:26 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/17 14:51:22 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/17 14:59:46 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* amacımız base classımızın member variable'ını pointer(humanB) VE referans(humanA) ile değişikliğe uğratmak */
 
 #include "HumanA.hpp"
 #include "HumanB.hpp"
