@@ -6,7 +6,7 @@ RM		= rm -rf
 
 OBJDIR	= .objFiles
 
-SRCS	= main.cpp Weapon.cpp HumanA.cpp
+SRCS	= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBJS	= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 
 #Colors:
