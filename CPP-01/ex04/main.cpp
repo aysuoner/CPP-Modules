@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:34:19 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/19 11:01:40 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/19 11:27:34 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	create_and_copy(replace *replace_o, std::string argv1) //bunu header kütü
 	in_file.close();
 	out_file.close();
 }
-
+//replace yasaklı fonksiyonmuş KALDIR!!!!!!
 int	main(int argc, char **argv)
 {
 	if (argc != 4)
