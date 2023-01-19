@@ -6,18 +6,19 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:34:19 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/18 20:29:00 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/19 11:01:40 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "replace.hpp"
 
-void	ReplaceStringInPlace(std::string& subject, const std::string& search, const std::string& replace) //bunu header kütüphanesinde nereye yazmalıyım?
+void	ReplaceStringInPlace(std::string& line, const std::string& search,
+								const std::string& replace)
 {
     size_t pos = 0;
-    while ((pos = subject.find(search, pos)) != std::string::npos)
+    while ((pos = line.find(search, pos)) != std::string::npos)
 	{
-         subject.replace(pos, search.length(), replace);
+         line.replace(pos, search.length(), replace);
          pos += replace.length();
     }
 }
@@ -38,7 +39,7 @@ void	create_and_copy(replace *replace_o, std::string argv1) //bunu header kütü
 	}
 	else
 	{
-		std::cout << "Cannot read File \n";
+		std::cerr << "Cannot read File \n";
 	}
 	in_file.close();
 	out_file.close();
@@ -47,7 +48,10 @@ void	create_and_copy(replace *replace_o, std::string argv1) //bunu header kütü
 int	main(int argc, char **argv)
 {
 	if (argc != 4)
-		return(0);
+	{
+		std::cerr << "You must enter three arguments!" << std::endl;
+		return(EXIT_FAILURE);
+	}
 	else
 	{
 		replace replace_o = replace(argv[1], argv[2], argv[3]);
