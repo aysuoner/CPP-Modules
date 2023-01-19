@@ -12,8 +12,6 @@ private:
 	void	warning(void);
 	void	error(void);
 public:
-	Harl(/* args */);
-	~Harl();
 	void    complain( std::string level); //parametre olarak gönderilen 4 levele bağlı olarak 4 members func'ı çağıran public member func.
 };
 

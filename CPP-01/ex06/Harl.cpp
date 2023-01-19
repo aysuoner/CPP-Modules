@@ -5,12 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 12:25:33 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/19 17:03:21 by aoner            ###   ########.fr       */
+/*   Created: 2023/01/19 16:59:53 by aoner             #+#    #+#             */
+/*   Updated: 2023/01/19 17:17:37 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+
+Harl::Harl(/* args */)
+{
+}
+
+Harl::~Harl()
+{
+}
 
 void	Harl::debug(void)
 {
@@ -32,15 +40,7 @@ void	Harl::error(void)
     std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-void	Harl::complain(std::string level)
+void    complain( std::string level)
 {
-	void(Harl:: *p[4])(void) = {&Harl::debug, &Harl::error, &Harl::info, &Harl::warning};
 	
-	std::string lvls[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-
-	for (int i = 0; i < 4 ; i++)
-	{
-		if (lvls[i] == level)
-			(this->*p[i])();
-	}
 }
