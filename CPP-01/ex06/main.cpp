@@ -6,21 +6,17 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:59:49 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/19 17:16:37 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/20 13:04:53 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-int main(void)
+int main(int argc, char **argv)
 {
-	std::string	lvl;
 	Harl harl_o;
-    std::cout << "The program is active. Enter a level (DEBUG, INFO, WARNING or ERROR).\nEXIT is for quit." << std::endl;
-	do
-	{
-		std::cin >> lvl;
-        harl_o.complain(lvl);
-	} while (lvl != "EXIT");
+ 	if (argc != 2)
+		return EXIT_FAILURE;
+    harl_o.complain(argv[1]);
 	return EXIT_SUCCESS;
 }
