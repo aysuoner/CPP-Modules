@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:49:59 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/23 14:16:53 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/23 17:55:51 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int Fixed::getRawBits() const
 	return fixed_num;
 }
 
-void Fixed::setRawBits(int raw)
+void Fixed::setRawBits(int const raw)
 {
 	this->fixed_num = raw;
 }
