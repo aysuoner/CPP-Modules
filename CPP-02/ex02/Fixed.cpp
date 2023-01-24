@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:09:04 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/24 15:21:27 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/24 21:09:31 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,11 @@ std::ostream &operator<<(std::ostream& out, const Fixed &other)
 /* //other olarak giden yani parametre olarak +'nın sağındakidir.
 +'nın solundaki bu operatorü çağırandır.
 this-> dediğimizde solundakinin değerlerini çağırmış oluruz.*/
-Fixed	Fixed::operator+(const Fixed &other)
+/* Fixed	Fixed::operator+(const Fixed &other) const
+!!!parametre olarak gönderilen const other class'ının değişkenlerinin değiştirilmesini engelliyor.
+dışarıdaki const ise bu fonksiyonu çağıran this->class'ının değişkenlerinin değiştirilmesi engelliyor.
+o yüzden ikisini de kullanmak önemli!!!!*/
+Fixed	Fixed::operator+(const Fixed &other) const
 {
 	Fixed	res;
 
@@ -94,27 +98,23 @@ Fixed	Fixed::operator+(const Fixed &other)
 	return res;
 }
 
-Fixed	Fixed::operator-(const Fixed &other)
+Fixed	Fixed::operator-(const Fixed &other) const
 {
 	Fixed	res;
-	
-	std::cout << this->toFloat() << std::endl;
-	std::cout << other.toFloat() << std::endl;
+
 	res = this->toFloat() - other.toFloat();
 	return res;
 }
 
-
-//------------------ arithmetic operators ------------------//
-Fixed	Fixed::operator*(const Fixed &other)
+Fixed	Fixed::operator*(const Fixed &other) const
 {
-	Fixed res;
+	Fixed	res;
 
 	res = this->toFloat() * other.toFloat();
 	return res;
 }
 
-Fixed	Fixed::operator/(const Fixed &other)
+Fixed	Fixed::operator/(const Fixed &other) const
 {
 	Fixed	res;
 
@@ -122,9 +122,10 @@ Fixed	Fixed::operator/(const Fixed &other)
 	return res;
 }
 
-
 //------------------ comparison operators ------------------//
-bool	Fixed::operator==(const Fixed &other)
+//github örneğinde tofloat() ile karşılaştırmak yerine getrawbits ile karşılaştırıyor?
+//benim yaptığım yanlış mı getrawbits mi olmalı????
+bool	Fixed::operator==(const Fixed &other) const
 {
 	if (this->toFloat() == other.toFloat())
 		return true;
@@ -132,7 +133,7 @@ bool	Fixed::operator==(const Fixed &other)
 		return false;
 }
 
-bool	Fixed::operator!=(const Fixed &other)
+bool	Fixed::operator!=(const Fixed &other) const
 {
 	if (this->toFloat() != other.toFloat())
 		return true;
@@ -140,7 +141,7 @@ bool	Fixed::operator!=(const Fixed &other)
 		return false;
 }
 
-bool	Fixed::operator<(const Fixed &other)
+bool	Fixed::operator<(const Fixed &other) const
 {
 	if (this->toFloat() < other.toFloat())
 		return true;
@@ -148,7 +149,7 @@ bool	Fixed::operator<(const Fixed &other)
 		return false;
 }
 
-bool	Fixed::operator>(const Fixed &other)
+bool	Fixed::operator>(const Fixed &other) const
 {
 	if (this->toFloat() > other.toFloat())
 		return true;
@@ -156,7 +157,7 @@ bool	Fixed::operator>(const Fixed &other)
 		return false;
 }
 
-bool	Fixed::operator<=(const Fixed &other)
+bool	Fixed::operator<=(const Fixed &other) const
 {
 	if (this->toFloat() <= other.toFloat())
 		return true;
@@ -164,7 +165,7 @@ bool	Fixed::operator<=(const Fixed &other)
 		return false;
 }
 
-bool	Fixed::operator>=(const Fixed &other)
+bool	Fixed::operator>=(const Fixed &other) const
 {
 	if (this->toFloat() >= other.toFloat())
 		return true;
@@ -172,34 +173,38 @@ bool	Fixed::operator>=(const Fixed &other)
 		return false;
 }
 
-
-
-
-/* //------------------ Increment/Decrement operators ------------------//
-
-Fixed	&Fixed::operator++(void) //arttır ve artmış halini döndür
+//------------------ Increment/Decrement operators ------------------//
+Fixed	Fixed::operator++(int)
 {
-	++this->fixed_num;
-        return *this; // return new value by reference
+	Fixed	old;
+
+	old = *this;
+	this->fixed_num++;
+	return old;
 }
 
-
-Fixed   Fixed::operator++(int)
+Fixed	Fixed::operator--(int)
 {
-    Fixed old = *this; // copy old value
-	operator++();  // prefix increment
-	return old;    // return old value
+	Fixed	old;
+
+	old = *this;
+	this->fixed_num--;
+	return old;
 }
 
-Fixed	&Fixed::operator--(void)
+//prefixlerde neden & Fixed::..kullanılıyor
+//ben kullanmadan yaptın yanlış mı?
+Fixed	Fixed::operator++(void)
 {
-	--this->fixed_num;
-        return *this; // return new value by reference
+	Fixed	&newf = *this;
+	this->fixed_num++;
+	return newf;
 }
 
-Fixed Fixed::operator--( int )
+Fixed	Fixed::operator--(void)
 {
-    Fixed old = *this; // copy old value
-    operator--();  // prefix decrement
-    return old;    // return old value
-} */
+	Fixed	&newf = *this;
+
+	this->fixed_num--;
+	return newf;
+}
