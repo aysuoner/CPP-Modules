@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:43:28 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/24 21:12:42 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/24 22:25:34 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main ( void ) {
     std::cout << a << std::endl;
     std::cout << b << std::endl;
 
-   // std::cout << Fixed::max( a, b ) << std::endl;
+    std::cout << Fixed::max( a, b ) << std::endl;
 
     return 0;
 }

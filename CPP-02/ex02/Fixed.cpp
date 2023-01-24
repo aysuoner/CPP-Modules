@@ -6,39 +6,33 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:09:04 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/24 21:09:31 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/24 22:33:29 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-//Default constructor
 Fixed::Fixed()
 {
 	fixed_num = 0;
 }
 
-//Copy constructor
 Fixed::Fixed(const Fixed &other)
 {
 	 *this = other;
 }
 
-//Constructor overload for int;
 Fixed::Fixed(const int a) //gelen 10 integer değerini 8bit sola kaydırıyoruz 2560 oluyor.
 {
 	fixed_num = (a << this->fract_bit); /*Shifting the bits of a to the left by the number of bits
 										specified by the fract_bit member of the object.*/
 }
 
-//Constructor overload for float;
-//float value to be converted to fixed point
 Fixed::Fixed(const float a) //42,42 sayısını 256 ile çarptık roundf onu 10860 olarak verdi bize;
 {
     fixed_num = std::roundf(a *( 1 << fract_bit)); //Rounding the number a to the nearest integer.
 }
 
-//Copy assigment
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	if (this != &other)
@@ -51,25 +45,21 @@ Fixed::~Fixed()
 ;
 }
 
-//getters
 int Fixed::getRawBits() const
 {
 	return fixed_num;
 }
 
-//setters
 void Fixed::setRawBits(int const raw)
 {
 	this->fixed_num = raw;
 }
 
-//fixed point değeri floating point değerine dönüştürür.
 float Fixed::toFloat() const
 {
 	return ((fixed_num / (float)(1 << fract_bit)));
 }
 
-//fixed point'i integer'a dönüştürür.
 int Fixed::toInt() const
 {
 	/* Converting the fixed point value to a floating point value. */
@@ -207,4 +197,35 @@ Fixed	Fixed::operator--(void)
 
 	this->fixed_num--;
 	return newf;
+}
+
+
+ Fixed	&Fixed::min(Fixed &a, Fixed&b)
+ {
+	if (a < b)
+		return a;
+	return b;
+ }
+
+ /* A static member function min that takes as parameters two references
+ to constant fixed-point numbers, and returns a reference to the smallest one. */
+const Fixed 	&Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a < b)
+		return a;
+	return b;
+}
+
+Fixed &Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a > b)
+		return a;
+	return b;
+}
+
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a > b)
+		return a;
+	return b;
 }

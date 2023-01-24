@@ -43,33 +43,11 @@ public:
 	Fixed	operator++(void);
 	Fixed	operator--(void);
 
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 	Fixed	&operator++(void);	// prefix
-    Fixed   operator++(int);	// postfix
-    Fixed	&operator--(void);	// prefix
-    Fixed   operator--(int);	// postfix */
+	//min - max func;
+	static Fixed &min(Fixed &a, Fixed &b);
+	static const Fixed &min(const Fixed &a, const Fixed &b);
+	static Fixed &max(Fixed &a, Fixed &b);
+	static const Fixed &max(const Fixed &a, const Fixed &b);
 };
 
 std::ostream	&operator<<(std::ostream& out, const Fixed &other);
