@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:09:04 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/23 19:30:11 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/25 11:04:37 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ Fixed::Fixed(const float a) //42,42 sayısını 256 ile çarptık roundf onu 108
 }
 
 //Copy assigment
+//neden & var &Fixed::operator?
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;

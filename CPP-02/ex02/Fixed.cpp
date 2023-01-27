@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:09:04 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/24 22:33:29 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/24 22:59:27 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ Fixed	Fixed::operator--(void)
 	return newf;
 }
 
-
+//------------------ min - max func ------------------//
  Fixed	&Fixed::min(Fixed &a, Fixed&b)
  {
 	if (a < b)
@@ -207,8 +207,6 @@ Fixed	Fixed::operator--(void)
 	return b;
  }
 
- /* A static member function min that takes as parameters two references
- to constant fixed-point numbers, and returns a reference to the smallest one. */
 const Fixed 	&Fixed::min(const Fixed &a, const Fixed &b)
 {
 	if (a < b)
