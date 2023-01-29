@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 09:34:50 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/27 20:58:37 by aoner            ###   ########.fr       */
+/*   Updated: 2023/01/29 14:26:51 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 ClapTrap::ClapTrap()
 {
-	std::cout << ">	Default constructor has been called!" << std::endl;
+	std::cout << ">	ClapTrap default constructor has been called!" << std::endl;
 	this->_name			= "-defaultname-";
 	this->_hitPoints	= 10;
 	this->_energyPoints = 10;
 	this->_attackDamage	= 0;
-
 }
 
 ClapTrap::~ClapTrap()
@@ -30,7 +29,7 @@ ClapTrap::~ClapTrap()
 
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << ">	Constructor with an argument has been called!" << std::endl;
+	std::cout << ">	ClapTrap constructor with an argument has been called!" << std::endl;
 	this->_name			= name;
 	this->_hitPoints	= 10;
 	this->_energyPoints	= 10;
@@ -41,7 +40,7 @@ ClapTrap::ClapTrap(std::string name)
 get ve set fonksiyonları ile çağırmak doğru bir şey mi? */
 ClapTrap::ClapTrap(const ClapTrap &old_obj)
 {
-	std::cout << ">	Copy constructor has been called!" << std::endl;
+	std::cout << ">	ClapTrap copy constructor has been called!" << std::endl;
 	this->setName(old_obj.getName());
 	this->setHitPoints(old_obj.getHitPoints());
 	this->setEnergyPoints(old_obj.getEnergyPoints());
@@ -58,7 +57,7 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &old_obj)
 	ve ogr parametresi aynı nesneyi gösteriyorsa, yani kendine atama yapılıyorsa,
 	hiçbir işlem yapılmamasını sağlar. Bu durumda, program hata vermeden çalışmaya
 	devam eder ve performansı arttırır */
-	std::cout << ">	Copy assignment operator has been called!" << std::endl;
+	std::cout << ">	ClapTrap copy assignment operator has been called!" << std::endl;
 	if(this != &old_obj)
 	{
 		this->setName(old_obj.getName());
@@ -111,7 +110,7 @@ unsigned int	ClapTrap::getAttackDamage(void) const
 	return(this->_attackDamage);
 }
 
-//funcs
+//Public Methods
 void	ClapTrap::attack(const std::string& target)
 {
 	if (this->getEnergyPoints() > 0 && this->getHitPoints() > 0)

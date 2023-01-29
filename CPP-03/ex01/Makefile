@@ -6,7 +6,7 @@ RM		= rm -rf
 
 OBJDIR	= .objFiles
 
-SRCS	= main.cpp ClapTrap.cpp
+SRCS	= main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJS	= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 
 #Colors:
