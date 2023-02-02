@@ -13,3 +13,10 @@ const üye fonksiyonlar içinde sınıfın değişkenlerinin değiştirilemeyece
 Fakat mutable anahtar kelimesini kullanarak const üye fonksiyonlar içinde
 istenilen değişkeni değiştirebiliriz. faydalı bir özellik gibi gelse de bu kullanımdan kaçınmalıyız.
 En son çare noktasında kullanılmalıdır.*/
+
+Virtual fonksiyon tanımlayıcısı, sınıfın miras aldığı sınıflarda fonksiyonlarının runtime bağlantısını sağlamak için kullanılır.
+ Virtual destructor, sınıfın dinamik olarak oluşturulan nesnelerinin doğru şekilde yok edilmesini sağlar.
+
+  base sınıfın destructor'ında virtual anahtar kelimesi kullanmak, yeterlidir.
+  Çünkü derived sınıfın destructor'ı base sınıfın virtual destructor'ının bir kopyasıdır
+  ve virtual anahtar kelimesi base sınıfın destructor'ında kullanıldığı için derived sınıfın destructor'ı da virtual olur.
