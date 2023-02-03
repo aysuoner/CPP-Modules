@@ -19,7 +19,6 @@ public:
 
 	//public methods
 	void	makeSound(void)const ;
-
 };
 
 

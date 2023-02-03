@@ -6,14 +6,14 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 11:55:33 by aoner             #+#    #+#             */
-/*   Updated: 2023/02/02 17:19:59 by aoner            ###   ########.fr       */
+/*   Updated: 2023/02/03 11:40:53 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
 //constructors
-Cat::Cat(void)
+Cat::Cat(void): Animal()
 {
 	this->type = "Cat";
 	std::cout << ">	Cat Class default constructor has been called " << std::endl;

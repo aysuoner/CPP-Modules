@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:05:40 by aoner             #+#    #+#             */
-/*   Updated: 2023/02/02 18:42:02 by aoner            ###   ########.fr       */
+/*   Updated: 2023/02/03 12:05:59 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //constructors
 WrongAnimal::WrongAnimal(void)
 {
-	this->type = "default wrong animal";
+	this->type = "Default Wrong-Animal";
 	std::cout << ">	Wrong-Animal Class default constructor has been called " << std::endl;
 }
 
@@ -58,5 +58,5 @@ std::string WrongAnimal::getType(void)const
 //public methods
 void	WrongAnimal::makeSound(void)const
 {
-	std::cout << this->getType() <<"	WrongAnimal sounds!!!" << std::endl;
+	std::cout << "***WrongAnimal SoundS***" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 11:53:57 by aoner             #+#    #+#             */
-/*   Updated: 2023/02/02 17:19:39 by aoner            ###   ########.fr       */
+/*   Updated: 2023/02/03 12:10:58 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //constructors
 Animal::Animal(void)
 {
-	this->type = "default-animal";
+	this->type = "Default-Animal";
 	std::cout << ">	Animal Class default constructor has been called " << std::endl;
 }
 
@@ -56,5 +56,5 @@ std::string	Animal::getType(void) const
 //public methods
 void		Animal::makeSound(void)const
 {
-	std::cout << ">	Animal default sounds" << std::endl;
+	std::cout << "***Animal DefauLt SouNdSss***" << std::endl;
 }

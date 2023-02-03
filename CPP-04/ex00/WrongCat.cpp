@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:06:38 by aoner             #+#    #+#             */
-/*   Updated: 2023/02/02 18:36:16 by aoner            ###   ########.fr       */
+/*   Updated: 2023/02/03 10:48:52 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ WrongCat &WrongCat::operator=(const WrongCat &old_obj)
 
 void	WrongCat::makeSound(void)const
 {
-	std::cout << this->getType() << "	Wrong-meeeeeuuuvvv " << std::endl;
+	std::cout <<"	****Wrong-meeeeeuUuvvwwwWww**** " << std::endl;
 }
