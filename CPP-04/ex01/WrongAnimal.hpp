@@ -13,7 +13,7 @@ public:
 	WrongAnimal(const WrongAnimal &old_obj);
 
 	//destructors
-	virtual ~WrongAnimal();
+	~WrongAnimal();
 
 	//overloadled operator
 	WrongAnimal	&operator=(const WrongAnimal &old_obj);
