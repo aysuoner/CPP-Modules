@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:49:59 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/23 17:55:51 by aoner            ###   ########.fr       */
+/*   Updated: 2023/02/04 19:32:35 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ Fixed::Fixed(const Fixed &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	fixed_num = other.getRawBits();
-
 }
 
 Fixed &Fixed::operator=(const Fixed &other)

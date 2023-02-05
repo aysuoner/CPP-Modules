@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 11:53:57 by aoner             #+#    #+#             */
-/*   Updated: 2023/02/03 12:10:58 by aoner            ###   ########.fr       */
+/*   Updated: 2023/02/05 13:22:44 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 //constructors
 Animal::Animal(void)
 {
-	this->type = "Default-Animal";
 	std::cout << ">	Animal Class default constructor has been called " << std::endl;
+	this->type = "Default-Animal";
 }
 
 Animal::Animal(const Animal &old_obj)
 {
-	*this = old_obj;
 	std::cout << ">	Animal Class copy constructor has been called" << std::endl;
+	*this = old_obj;
 }
 
 //destructor 
@@ -34,11 +34,11 @@ Animal::~Animal()
 //overloaded operator
 Animal	&Animal::operator=(const Animal &old_obj)
 {
+	std::cout << ">	Animal Class copy assignment operator has been called" << std::endl;
 	if (this != &old_obj)
 	{
 		this->setType(old_obj.getType());
 	}
-	std::cout << ">	Animal Class copy assignment operator has been called" << std::endl;
 	return *this;
 }
 

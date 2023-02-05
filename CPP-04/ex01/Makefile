@@ -1,4 +1,4 @@
-NAME 	= Polymorphism
+NAME 	= Brain
 
 CC 		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -8,7 +8,8 @@ OBJDIR	= .objFiles
 
 SRCS	= main.cpp Animal.cpp Dog.cpp Cat.cpp \
 		WrongAnimal.cpp \
-		WrongCat.cpp
+		WrongCat.cpp \
+		Brain.cpp
 OBJS	= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 
 #Colors:
