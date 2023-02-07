@@ -25,25 +25,30 @@ public:
 	const std::string	&getName() const;
 	int					getGrade() const;
 
+	//public methods
+	void        incrementGrade();
+    void        decrementGrade();
+
+	//exception classes
 	class GradeTooLowException: public std::exception
 	{
   		public:
-    		virtual const char* what() const throw()
+    		virtual const char* what() const _NOEXCEPT
     		{
-        		return "tooolow\n";
+        		return "Grade too low";
     		}
 	};
 
 	class GradeTooHighException: public std::exception
 	{
 		public:
-    		virtual const char* what() const throw()
+    		virtual const char* what() const _NOEXCEPT
     		{
-        		return "tooo high\n";
+        		return "Grade to high";
     		}
 	};
-
 };
 
+std::ostream&   operator<<(std::ostream& out, const Bureaucrat& other);
 
 #endif

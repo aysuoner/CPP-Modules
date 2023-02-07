@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:23:34 by aoner             #+#    #+#             */
-/*   Updated: 2023/02/06 22:24:40 by aoner            ###   ########.fr       */
+/*   Updated: 2023/02/07 20:30:26 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,14 @@ ve kopyasının oluşturulmasını ve onun üzerinde değişiklik yapılmasını
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name), grade(grade)
 {
 	if (grade < 1)
-		Bureaucrat::GradeTooLowException;
+		throw Bureaucrat::GradeTooLowException();
 	else if (grade > 150)
-		Bureaucrat::GradeTooHighException;
+		throw Bureaucrat::GradeTooHighException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &old_obj): name(old_obj.name), grade(old_obj.grade)
 {
-	
 }
-
 
 //operator overloaded
 /* ğer name değişkeni const olarak işaretlenmişse ve name değerinin değiştirilmemesi garanti edilmişse,
@@ -49,11 +47,18 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &old_obj)
 	return *this;
 }
 
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& other)
+{
+    out << other.getName() << ", bureaucrat grade " << other.getGrade();
+    return out;
+}
 
+//destructor
 Bureaucrat::~Bureaucrat()
 {
 }
 
+//getters
 /*Const türde bir değişkenin değeri değiştirilemez
 bu nedenle fonksiyonun dışında bu değişkeni kullanmak için
 const referansı kullanmak daha verimlidir.
@@ -69,4 +74,19 @@ const std::string &Bureaucrat::getName() const
 int	Bureaucrat::getGrade() const
 {
 	return(this->grade);
+}
+
+//public methods
+void    Bureaucrat::incrementGrade()
+{
+    if (this->grade - 1 < 1 )
+        throw Bureaucrat::GradeTooHighException();
+    this->grade--;
+}
+
+void    Bureaucrat::decrementGrade()
+{
+    if (this->grade + 1 > 150 )
+        throw Bureaucrat::GradeTooLowException();
+    this->grade++;
 }

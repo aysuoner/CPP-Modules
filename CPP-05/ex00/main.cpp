@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:10:52 by aoner             #+#    #+#             */
-/*   Updated: 2023/02/06 23:26:27 by aoner            ###   ########.fr       */
+/*   Updated: 2023/02/07 23:15:25 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,21 @@ int main()
 {
 	try
     {
-        throw Bureaucrat("nazi", 1234);
+        Bureaucrat dfd("nazi", 2);
+		std::cout << dfd << std::endl;
+        dfd.incrementGrade();
+		std::cout << dfd << std::endl;
+        dfd.incrementGrade();
+        dfd.incrementGrade();
+        dfd.decrementGrade();
+		std::cout << dfd << std::endl;
+        dfd.decrementGrade();
+		std::cout << dfd << std::endl;
+		
     }
-    catch(std::exception& e)
+    catch(const std::exception& e)
     {
-        std::cout << e.what() << '\n';
+        std::cout << e.what();
     }
-    catch(std::exception& e)
-    {
-        std::cout << e.what() << '\n';
-	}
+	return EXIT_SUCCESS;
 }
