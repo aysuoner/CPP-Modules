@@ -6,34 +6,38 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:23:34 by aoner             #+#    #+#             */
-/*   Updated: 2023/02/07 20:30:26 by aoner            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:48:42 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-//constructors
-Bureaucrat::Bureaucrat(): name(""), grade(0) {}
+//Constructor
+Bureaucrat::Bureaucrat(): name("default"), grade(1) {}
 
 /* Class içinde tanımlanan name const olarak tanımlanmıştır.
 Bu da değişkenin değerinin class dışında değiştirilmemesinin garanti edilmesini amaçlar.
 &name olarak gönderilmesi ile veri transferinde daha verimli bir yapı kullanılmış olur çünkü bu şekilde adresini işaret ediyoruz
 ve kopyasının oluşturulmasını ve onun üzerinde değişiklik yapılmasını engellemiş oluyoruz.
 */
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name), grade(grade)
+Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name)
 {
-	if (grade < 1)
-		throw Bureaucrat::GradeTooLowException();
-	else if (grade > 150)
-		throw Bureaucrat::GradeTooHighException();
+	this->setGrade(grade);
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &old_obj): name(old_obj.name), grade(old_obj.grade)
+Bureaucrat::Bureaucrat(const Bureaucrat &old_obj): name(old_obj.name + "_copy"), grade(old_obj.grade)
 {
+	std::cout << "Bureaucrat Copy Constructor has been called" << std::endl;
 }
 
-//operator overloaded
-/* ğer name değişkeni const olarak işaretlenmişse ve name değerinin değiştirilmemesi garanti edilmişse,
+//Destructor
+Bureaucrat::~Bureaucrat()
+{
+	std::cout << "Bureaucrat Deconstructor for " << this->getName() << " called" << std::endl;
+}
+
+//Operator overloaded
+/* eğer name değişkeni const olarak işaretlenmişse ve name değerinin değiştirilmemesi garanti edilmişse,
 copy assignment operator fonksiyonunda name = other.name şeklinde bir satır yazmanız gerekmez.
 Zaten garanti edilen bir değerin değiştirilmesi yanlış olur ve bu durum hatalı kod yapısına neden olabilir.
 const olarak işaretlenmişse bu durumda, name değişkeninin değeri copy assignment operator fonksiyonu çağrılmadan
@@ -41,24 +45,25 @@ const olarak işaretlenmişse bu durumda, name değişkeninin değeri copy assig
 */
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &old_obj)
 {
+	std::cout << "Copy assignment operator has been called" << std::endl;
 	if (this == &old_obj)
 		return *this;
-	this->grade = old_obj.grade;
+	this->grade = old_obj.getGrade();
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream& out, const Bureaucrat& other)
+//Setter
+void	Bureaucrat::setGrade(int grade)
 {
-    out << other.getName() << ", bureaucrat grade " << other.getGrade();
-    return out;
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else
+		this->grade = grade;
 }
 
-//destructor
-Bureaucrat::~Bureaucrat()
-{
-}
-
-//getters
+//Getter
 /*Const türde bir değişkenin değeri değiştirilemez
 bu nedenle fonksiyonun dışında bu değişkeni kullanmak için
 const referansı kullanmak daha verimlidir.
@@ -76,17 +81,31 @@ int	Bureaucrat::getGrade() const
 	return(this->grade);
 }
 
-//public methods
+//Exeptions
+const char* Bureaucrat::GradeTooLowException::what() const _NOEXCEPT
+{
+	return ("Grade too low\n");
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const _NOEXCEPT
+{
+	return ("Grade too high\n");
+}
+
+//Public method
 void    Bureaucrat::incrementGrade()
 {
-    if (this->grade - 1 < 1 )
-        throw Bureaucrat::GradeTooHighException();
-    this->grade--;
+	this->setGrade(this->grade - 1);
 }
 
 void    Bureaucrat::decrementGrade()
 {
-    if (this->grade + 1 > 150 )
-        throw Bureaucrat::GradeTooLowException();
-    this->grade++;
+    this->setGrade(this->grade + 1);
+}
+
+//Osteram overload
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& other)
+{
+    out << other.getName() << ", bureaucrat grade " << other.getGrade();
+    return out;
 }
