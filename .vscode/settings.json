@@ -69,6 +69,7 @@
 		"compare": "cpp",
 		"concepts": "cpp",
 		"variant": "cpp",
-		"filesystem": "cpp"
+		"filesystem": "cpp",
+		"memory_resource": "cpp"
 	}
 }
