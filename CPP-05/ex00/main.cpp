@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:10:52 by aoner             #+#    #+#             */
-/*   Updated: 2023/02/08 17:13:51 by aoner            ###   ########.fr       */
+/*   Updated: 2023/02/23 15:29:29 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ int main(void)
 		Bureaucrat b("Me", 5);
 		std::cout << b << std::endl;
 	
-		Bureaucrat a("You", 2);
+		Bureaucrat a("Mike", 2);
 		std::cout << a << std::endl;
 		a.incrementGrade();
 	
-		Bureaucrat d("You", 10);
+		Bureaucrat d("Sue", 10);
 		std::cout << d << std::endl;
 		d.incrementGrade();
 	
-		Bureaucrat c("Her", 149);
+		Bureaucrat c("Cindy", 149);
 		std::cout << c << std::endl;
 		c.decrementGrade();
 	
