@@ -12,11 +12,11 @@ using std:: cout;
 class Cast
 {
 private:
-	char	ch;
-	int		in;
-	bool	check;
-	int		argv;
-	//float	fl;
+	char		ch;
+	int			in;
+	bool		check;
+	int			argv;
+	std::string		fl;
 	//double	db;
 public:
 	Cast();
@@ -24,9 +24,11 @@ public:
 	//setters
 	void	setChar(char *argv);
 	void	setInt(char	*argv);
+	void	setFloat(char *argv);
 	//getters
 	char	getChar() const;
 	string	getInt() const;
+	string	getFloat() const;
 	bool isBetweenIntLimits(const char* str);
 };
 

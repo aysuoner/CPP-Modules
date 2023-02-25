@@ -6,9 +6,11 @@ int main(int argc, char **argv)
 	if (argc == 2)
 	{
 		cast.setChar(argv[1]);
-		std::cout << "char:	" << cast.getChar() << std::endl;
+		std::cout << "Char:	" << cast.getChar() << std::endl;
 		cast.setInt(argv[1]);
 		std::cout << "Int:	" << cast.getInt() << std::endl;
+		cast.setFloat(argv[1]);
+		std::cout << "Float:	" << cast.getFloat() << std::endl;
 	}
 }
 
