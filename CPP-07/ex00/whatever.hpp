@@ -22,7 +22,7 @@ T max(T &src1, T &src2)
 template <typename T>
 T min(T &src1, T &src2)
 {
-	if (src1 < src2 ? src1 : src2);
+	return (src1 < src2 ? src1 : src2);
 }
 
 #endif
