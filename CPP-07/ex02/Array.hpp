@@ -13,12 +13,22 @@ private:
 	unsigned int	_size;
 
 public:
-    Array(void) : _arr(new T()), _size(0) {};
-    Array(unsigned int n) : _arr(new T[n]), _size(n) {};
-    Array(const Array& rhs) : _arr(new T[rhs.size()]), _size(rhs.size())
+    Array(void) : _size(0)
 	{
-        for (unsigned int i(0); i < _size; i++)
+		_arr = new T[0]; 
+	};
+    Array(unsigned int n)
+	{
+		_size = n;
+		_arr = new T[n];
+	};
+    Array(const Array& rhs)
+	{
+		_size = rhs._size;
+		_arr = new T[_size];
+        for (unsigned int i(0); i < _size; i++){
             _arr[i] = rhs._arr[i];
+		}
     };
 
     Array& operator=(const Array& rhs)
@@ -26,10 +36,11 @@ public:
         if (this != &rhs)
 		{
             delete[] _arr;
-            _arr = new T[rhs.size()];
             _size = rhs._size;
-            for (unsigned int i(0); i < _size; i++)
+            _arr = new T[_size];
+            for (unsigned int i(0); i < _size; i++){
                 _arr[i] = rhs._arr[i];
+			}
         }
         return *this;
     }
@@ -41,11 +52,13 @@ public:
         return _arr[i];
     }
 
-    unsigned int  size(void) const {
+    unsigned int  size(void) const
+	{
 		return _size;
 	}
 
-    ~Array(void){
+    ~Array(void)
+	{
 		delete[] _arr;
 	}
 
