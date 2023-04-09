@@ -1,5 +1,5 @@
 NAME = easy_find
-SRCS = main.cpp easyfind.tpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
