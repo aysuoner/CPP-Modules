@@ -6,14 +6,11 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:58:09 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/09 22:29:26 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/09 22:37:58 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
-
-#include "easyfind.hpp"
-#include <list>
 
 int main()
 {
