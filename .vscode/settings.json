@@ -70,6 +70,7 @@
 		"concepts": "cpp",
 		"variant": "cpp",
 		"filesystem": "cpp",
-		"memory_resource": "cpp"
+		"memory_resource": "cpp",
+		"list": "cpp"
 	}
 }
