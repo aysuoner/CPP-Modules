@@ -75,4 +75,16 @@ int main()
     //iteratorlü fonksiyon tanımlamak
     std::cout << "\niteratorlü fonksiyon tanımlamak ve çağırmak..." << std::endl;
     printv(v6);
+
+    std::cout << "\nITERATORRRRSSSSS" << std::endl;
+    std::vector<std::string> v8;
+    std::cout << "isempty: "<< v8.empty() << std::endl;
+    v8.insert(v8.begin(), "aysu");
+    v8.insert(v8.begin(), "ecole");
+    v8.insert(v8.begin(), "42"); //buranın çıktısına dikkattt artık başta 42 var...
+    v8.push_back("ist");
+    v8.push_back("berlin");
+    std::cout << "isempty: " << v8.empty() << std::endl;
+    printv(v8);
+
 }
