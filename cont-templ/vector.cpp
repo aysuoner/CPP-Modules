@@ -59,7 +59,7 @@ int main()
     //iterator kullanımı...
     std::cout << "v6indx3: "<<v6[3] << std::endl;
     std::vector<int>::iterator it = v6.begin() + 3;
-    v6.insert(it, 125);    
+    v6.insert(it, 125);
     std::cout << "new v6indx3: "<<v6[3] << std::endl;
 
     //iterator kullanarak vector içini yazdırmak...

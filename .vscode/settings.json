@@ -71,6 +71,8 @@
 		"variant": "cpp",
 		"filesystem": "cpp",
 		"memory_resource": "cpp",
-		"list": "cpp"
+		"list": "cpp",
+		"__tree": "cpp",
+		"map": "cpp"
 	}
 }

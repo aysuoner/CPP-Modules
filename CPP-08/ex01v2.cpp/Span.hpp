@@ -13,13 +13,16 @@ class Span
 private:
     std::vector<int>	_v;
 	unsigned int		_n;
-	static unsigned int	_count;
+	unsigned int		_count;
 
 public:
 	Span();
 	Span(unsigned int n);
 	~Span();
 	void	addNumber(int val);
+	void	fill_all(std::vector<int> vector);
+	int		get_count() const;
+
 
 };
 
