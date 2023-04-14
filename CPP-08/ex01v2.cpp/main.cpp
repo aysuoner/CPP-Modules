@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:53:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/13 22:52:08 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/14 14:54:22 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void    printv(std::vector<T> &v)
     while (i != v.end())
         std::cout << *i++ << " ";
     std::cout << std::endl;
-} */
+}*/
 
 int main(void)
 {
-	Span sp1(8);
+	Span sp1(10);
 	sp1.addNumber(42);
 	sp1.addNumber(43);
 	sp1.addNumber(44);
@@ -38,7 +38,13 @@ int main(void)
 	v1.push_back(50);
 	v1.push_back(60);
 
-	sp1.fill_all(v1);
+	sp1.fill_all(v1.begin(), v1.end());
+	//sp1.fill_all(v1); //böyle yaparsam referansı ile nasıl gönderebilirim?
 
+	//bunların da referanslarını göndermek daha iyi olur!!!
+	//olmadı bu fonksiyonlar baştan yap...
+	std::cout << "longesssst:" << sp1.longestSpan(sp1) << std::endl;
+	std::cout << "shortsssstt:" << sp1.shortestSpan(sp1) << std::endl;
+	
 	return 0;
 }

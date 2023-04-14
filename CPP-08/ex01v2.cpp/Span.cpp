@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:46:53 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/13 22:54:36 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/14 14:53:59 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,30 +28,53 @@ Span::~Span()
 	
 }
 
-int	Span::get_count()const
-{
-	return(_count);
-}
-
 void Span::addNumber(int val)
 {
-
-	//try-catch blok add!!
-	if (this->_n != this->_count)
+	try
 	{
-		_v.insert(_v.begin() + _count, val);
-		std::cout << "_v:: "<< _v[_count] << std::endl;
+		if (this->_n != this->_count)
+		{
+			_v.insert(_v.begin() + _count, val);
+			std::cout << "_v:: "<< _v[_count] << std::endl;
+		}
+		else
+			throw Span::TooMuchCount();
+		_count++;
 	}
-	else
+	catch(const std::exception& e)
 	{
-		printf("count:: %d\n", _count);
-		printf("errrrorrr\n");
+		std::cerr << e.what() << '\n';
+		exit(1); //buraya exit koymak yanlış mi?
 	}
-	//std::cout << _v[_count];
-	_count++;
 }
 
-void	Span::fill_all(std::vector<int> vector)
+void Span::fill_all(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	while ((begin != end))
+	{
+		addNumber(*begin);
+		begin++;
+	}
+}
+
+const char* Span::TooMuchCount::what() const _NOEXCEPT
+{
+	return ("There are already N elements stored!!\n");
+}
+
+int Span::longestSpan(Span span)
+{
+	sort(span._v.begin(), span._v.end());
+	return (*(span._v.end() - 1) - span._v.front());
+}
+
+int Span::shortestSpan(Span span)
+{
+	sort(span._v.begin(), span._v.end());
+	return (*(span._v.rbegin()) - *(span._v.rbegin() + 1));
+}
+
+/* void	Span::fill_all(std::vector<int> vector)
 {
 	std::vector<int>::iterator begin = vector.begin();
 	std::vector<int>::iterator end = vector.end();
@@ -64,4 +87,4 @@ void	Span::fill_all(std::vector<int> vector)
 	//throw
 //	printf("count:: %d n::%d\n", _count, _n);
 //	printf("errrrKKKKK\n");
-}
+} */
