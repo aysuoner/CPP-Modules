@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:46:53 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/14 14:53:59 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/14 17:15:51 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,28 @@ const char* Span::TooMuchCount::what() const _NOEXCEPT
 	return ("There are already N elements stored!!\n");
 }
 
-int Span::longestSpan(Span span)
-{
-	sort(span._v.begin(), span._v.end());
-	return (*(span._v.end() - 1) - span._v.front());
-}
-
 int Span::shortestSpan(Span span)
 {
-	sort(span._v.begin(), span._v.end());
-	return (*(span._v.rbegin()) - *(span._v.rbegin() + 1));
+	unsigned int i = _count;
+	int range = 0;
+	int temp = 0;
+	sort(span._v.begin(), (span._v.begin() + _count));
+	while(i >= 2)
+	{
+		temp = span._v[i - 1] - span._v[i - 2];
+		if (i == _count)
+			range = temp;
+		else if (temp <= range)
+			range = temp;
+		i--;
+	}
+	return (range);
+}
+
+int Span::longestSpan(Span span)
+{
+	sort(span._v.begin(), (span._v.begin() + _count));
+	return (span._v[_count - 1] - span._v[0]);
 }
 
 /* void	Span::fill_all(std::vector<int> vector)

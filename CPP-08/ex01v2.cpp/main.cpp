@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:53:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/14 14:54:22 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/14 17:16:57 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void    printv(std::vector<T> &v)
 
 int main(void)
 {
-	Span sp1(10);
+	Span sp1(56);
 	sp1.addNumber(42);
-	sp1.addNumber(43);
+	sp1.addNumber(42);
 	sp1.addNumber(44);
 	sp1.addNumber(47);
 
@@ -42,9 +42,9 @@ int main(void)
 	//sp1.fill_all(v1); //böyle yaparsam referansı ile nasıl gönderebilirim?
 
 	//bunların da referanslarını göndermek daha iyi olur!!!
-	//olmadı bu fonksiyonlar baştan yap...
-	std::cout << "longesssst:" << sp1.longestSpan(sp1) << std::endl;
+	//try catch yapmalısın eleman 0 ise onu yappp
 	std::cout << "shortsssstt:" << sp1.shortestSpan(sp1) << std::endl;
+	std::cout << "longesssst:" << sp1.longestSpan(sp1) << std::endl;
 	
 	return 0;
 }
