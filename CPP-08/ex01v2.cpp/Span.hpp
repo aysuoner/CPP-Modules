@@ -6,9 +6,6 @@
 #include <algorithm>
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
-#include <thread>
-
 
 class Span
 {
@@ -18,21 +15,27 @@ private:
 	unsigned int		_count;
 
 public:
+	//ortodoks canon
 	Span();
 	Span(unsigned int n);
 	~Span();
+
+	//member funcs
 	void	addNumber(int val);
-	//void	fill_all(std::vector<int> vector);
 	void	fill_all( std::vector<int>::iterator begin, std::vector<int>::iterator end);
-	int		longestSpan(Span span);
-	int		shortestSpan(Span span);
-
-
+	int		longestSpan();
+	int		shortestSpan();
 
 	class TooMuchCount: public std::exception
 	{
   		public:
     		virtual const char* what() const _NOEXCEPT;
+	};
+
+	class TooFewCount: public std::exception
+	{
+		public:
+			virtual const char* what() const _NOEXCEPT;
 	};
 
 };
