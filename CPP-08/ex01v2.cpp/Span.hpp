@@ -15,12 +15,12 @@ private:
 	unsigned int		_count;
 
 public:
-	//ortodoks canon
 	Span();
 	Span(unsigned int n);
 	~Span();
+	Span(const Span &copy);
+	Span &operator=(const Span &copy);
 
-	//member funcs
 	void	addNumber(int val);
 	void	fill_all( std::vector<int>::iterator begin, std::vector<int>::iterator end);
 	int		longestSpan();
