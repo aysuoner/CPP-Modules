@@ -12,7 +12,6 @@ class Span
 private:
     std::vector<int>	_v;
 	unsigned int		_n;
-	unsigned int		_count;
 
 public:
 	Span();
@@ -25,6 +24,7 @@ public:
 	void	fill_all( std::vector<int>::iterator begin, std::vector<int>::iterator end);
 	int		longestSpan();
 	int		shortestSpan();
+	void	print_span();
 
 	class TooMuchCount: public std::exception
 	{
