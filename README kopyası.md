@@ -1,2 +1,0 @@
-# cpp-intra
-final-cpp

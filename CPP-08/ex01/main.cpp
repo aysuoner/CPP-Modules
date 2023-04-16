@@ -5,86 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 16:46:57 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/11 19:14:58 by aoner            ###   ########.fr       */
+/*   Created: 2023/04/13 17:53:15 by aoner             #+#    #+#             */
+/*   Updated: 2023/04/15 22:20:54 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-/* int main()
+//test geliştir...
+int main(void)
 {
-    try
-    {
-        Span sp = Span(5);
-        sp.addNumber(6);
-        sp.addNumber(3);
-        sp.addNumber(1);
-        sp.addNumber(9);
-        sp.addNumber(11);
-
-        // using addRange memeber function
-        std::vector<int> v;
-        v.push_back(6);
-        v.push_back(3);
-        v.push_back(1);
-        v.push_back(9);
-        v.push_back(11);
-        sp.addRange(v.begin(), v.end());
-        std::cout << sp.shortestSpan() << std::endl;
-        std::cout << sp.longestSpan() << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << "exception found " << e.what() << '\n';
-    }
-
-	try
-    {
-        Span sp = Span(5);
-        std::vector<int> v = {13, 7, 4, 8};
-        sp.addRange(v.begin(), v.end()); // add another range of numbers using iterators
-        std::cout << sp.shortestSpan() << std::endl;
-        std::cout << sp.longestSpan() << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << "exception found " << e.what() << '\n';
-    }
+	//color_code
+	std::string white_code = "\001\033[1m\033[37m\002";
+	std::string reset_code = "\001\033[0;0m\002";
 	
-    return 0;
-}
- */
+	std::cout << white_code << "\n----AaddNumber() TEST-----" << reset_code << std::endl;
+	Span sp1(15);
+	sp1.addNumber(10);
+	sp1.addNumber(20);
+	sp1.addNumber(30);
+	sp1.addNumber(40);
+	sp1.print_span();
 
-int main()
-{
-    try
-    {
-        Span sp = Span(104);
-		std::srand(std::time(NULL));
-        for (int i = 0; i < 100; i++)
-        {
-            sp.addNumber(i);
-        }
+	std::cout << white_code << "\n\n----fill all() TEST - 1-----" << reset_code << std::endl;
+	std::vector<int> v1;
+	v1.push_back(50);
+	v1.push_back(60);
+	v1.push_back(70);
+	v1.push_back(80);
+	v1.push_back(90);
+	v1.push_back(100);
+	sp1.fill_all(v1.begin(), v1.end());
+	sp1.print_span();
+
+	std::cout << white_code << "\n\n----range TEST-----" << reset_code << std::endl;
+	std::cout << "short:	" << sp1.shortestSpan()	<< std::endl;
+	std::cout << "long:	" << sp1.longestSpan()	<< std::endl;
+
+	Span sp2(23);
+	std::cout << "long:	"  << sp2.longestSpan()	<< std::endl;
+	std::cout << "short:	" << sp2.shortestSpan() << std::endl;
+
+	std::cout << white_code << "\n----RANDOM TEST -----" << reset_code << std::endl;	
+	Span sp3(200);
+	std::vector<int> v2;
+	std::srand(std::time(NULL));
+	int val;
+	for (int i = 0; i <= 150; i++)
+	{
+		if (i % 2 == 0)
+			val = (std::rand() % ((i + 1) % i + 3) * 1);
+		else if (i % 2 == 1)
+			val = (std::rand() % (i + 1) % i + 6) * 7;
+		v2.push_back(val);
+	}
+	sp3.fill_all(v2.begin(), v2.end());
+	sp3.print_span();
+
+	std::cout << white_code << "\n\n----range TEST-----" << reset_code << std::endl;
+	std::cout << "long:	"  << sp3.longestSpan()	<< std::endl;
+	std::cout << "short:	" << sp3.shortestSpan() << std::endl;
 	
-        std::vector<int> v;
-		v.push_back(std::rand() % 1000);
-		std::this_thread::sleep_for(std::chrono::milliseconds(10)); // 1 saniye bekle
-		v.push_back(std::rand() % 1000);
-		std::this_thread::sleep_for(std::chrono::milliseconds(10)); // 1 saniye bekle
-		v.push_back(std::rand() % 1000);
-		std::this_thread::sleep_for(std::chrono::milliseconds(10)); // 1 saniye bekle
-		v.push_back(std::rand() % 1000);
-        sp.addRange(v.begin(), v.end());
-
-        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << sp.longestSpan() << std::endl;
-
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << "Exception: " << e.what() << '\n';
-    }
-
-    return 0;
+	return 0;
 }

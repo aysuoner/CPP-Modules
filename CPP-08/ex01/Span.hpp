@@ -2,26 +2,42 @@
 #define SPAN_HPP
 
 #include <vector>
-#include <iostream>
+#include <list>
 #include <algorithm>
+#include <iostream>
 #include <cstdlib>
-#include <ctime>
-#include <thread>
 
 class Span
 {
-    private:
-        std::vector<int> _v;
-        unsigned int _n;
-    public:
-        Span(unsigned int n);
-        Span(const Span &copy);
-        ~Span();
-        Span &operator=(const Span &copy);
-        void addNumber(int n);
-        int shortestSpan();
-        int longestSpan();
-        void addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+private:
+    std::vector<int>	_v;
+	unsigned int		_n;
+
+public:
+	Span();
+	Span(unsigned int n);
+	~Span();
+	Span(const Span &copy);
+	Span &operator=(const Span &copy);
+
+	void	addNumber(int val);
+	void	fill_all( std::vector<int>::iterator begin, std::vector<int>::iterator end);
+	int		longestSpan();
+	int		shortestSpan();
+	void	print_span();
+
+	class TooMuchCount: public std::exception
+	{
+  		public:
+    		virtual const char* what() const _NOEXCEPT;
+	};
+
+	class TooFewCount: public std::exception
+	{
+		public:
+			virtual const char* what() const _NOEXCEPT;
+	};
+
 };
 
 #endif

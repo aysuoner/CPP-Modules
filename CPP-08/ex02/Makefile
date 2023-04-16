@@ -1,11 +1,11 @@
-NAME = span
-SRCS = main.cpp Span.cpp
+NAME = stack
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
-$(NAME): $(OBJS) Span.hpp
+$(NAME): $(OBJS) MutantStack.hpp
 	c++ $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 clean:
