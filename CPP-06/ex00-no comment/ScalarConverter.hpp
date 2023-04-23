@@ -4,19 +4,14 @@
 //bunların hangi fonksiyonlar için kullanıldığını öğren?
 #include <iostream>
 #include <string>
-#include <cstring>
 #include <cstdlib>
-#include <cstdio>
-#include <cmath>
 #include <climits>
-#include <cerrno>
+#include <cmath>
 
 class ScalarConverter
 {
 	public:
 		static void			convert(const std::string input);
-		static std::string	getType(std::string input); //içeride çağır burayı sil
-
 		~ScalarConverter();
 	private:
 		ScalarConverter();

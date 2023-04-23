@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:18:09 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/23 15:06:45 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/23 17:44:59 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	printFloat(float f)
 		std::cout << "char:	'" << c << "'" << std::endl;
 	else
 		std::cout << "char:	Non displayable" << std::endl;
-	if (std::isnan(f) || std::isinf(f) || f > (float)INT_MAX || f < (float)INT_MIN) // (float)INT_MIN) bu kullanılış???
+	if (std::isnan(f) || std::isinf(f) || f > (float)INT_MAX || f < (float)INT_MIN)
 		std::cout << "int:	impossible" << std::endl;
 	else
 		std::cout << "int:	" << static_cast<int>(f) << std::endl;
@@ -77,13 +77,13 @@ void	printChar(char c)
 	if (std::isprint(c))
 		std::cout << "char:	'" << c << "'" << std::endl;
 	else
-		std::cout << "char:	Non displayable" << std::endl; //bu else'e hangi koşulda girer?
+		std::cout << "char:	Non displayable" << std::endl;
 	std::cout << "int:	" << static_cast<int>(c) << std::endl;
 	std::cout << "float:	" << static_cast<float>(c) << 'f' << std::endl;
 	std::cout << "double:	" << static_cast<double>(c) << std::endl;
 }
 
-std::string	ScalarConverter::getType(const std::string input)
+std::string	getType(const std::string input)
 {
 	if (input.empty())
 		return "empty";
@@ -118,9 +118,6 @@ std::string	ScalarConverter::getType(const std::string input)
 	}
 }
 
-/*neden static cast tercih ettin.
-static cast nedir? avantajları?*/
-//neden bu programda strtolf,d yerine static kullanıldı tür dönüşümlerinde...
 void ScalarConverter::convert(const std::string input)
 {	
 	std::string type = getType(input);
@@ -138,11 +135,9 @@ void ScalarConverter::convert(const std::string input)
 		printDouble(d);
 	} else
 	{
-		if (errno)
-		{
+		if (errno){
 			std::perror("Error");
-		}
-		else
+		}else
 			std::cout << "type: " + type << std::endl;
 	}
 }

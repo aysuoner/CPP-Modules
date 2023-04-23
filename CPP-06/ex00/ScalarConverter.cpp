@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:18:09 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/23 12:38:55 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/23 17:25:02 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,13 @@ void	printInt(long i)
 bir veri türüne doğrudan dönüştürme yapar. Bu operatör,
 genellikle derleme zamanında gerçekleşen güvenli tür
 dönüşümlerinde kullanılır. */
+
+/*static_cast C++ dilinde standart bir tür dönüşümü işlemidir.
+static_cast kullanarak yapılan tür dönüşümleri, kodun daha okunaklı olmasını sağlar
+ve C++ standartlarına uygunluğu arttırır.
+strtol, strtod ve stof gibi C fonksiyonları ise, karakter dizilerini sayılara veya
+diğer türlere dönüştürmek için kullanılır ve C++ standartlarına uygun olmayabilirler.
+Ancak, C dilinde bu fonksiyonlar oldukça yaygın olarak kullanılır.*/
 void	printChar(char c)
 {
 	std::cout << "char" << std::endl; //silinecek
@@ -200,6 +207,15 @@ std::string	ScalarConverter::getType(const std::string input)
 		}
 	}
 }
+
+//atol, f, d yerine static kullanılmaz mı?
+/* static_cast, C++ dönüştürme operatörüdür ve
+tip belirtilerek kullanılır. Bu operatör, kaynak
+ve hedef tipler arasında dönüştürme yapar.
+Ancak, static_cast, karakter dizisi veya string gibi
+girdileri doğrudan sayısal değerlere dönüştüremez.
+Bu nedenle, convert fonksiyonu için, strto* veya atoi
+gibi işlevlerin kullanılması daha uygun olacaktır. */
 
 void ScalarConverter::convert(const std::string input)
 {	

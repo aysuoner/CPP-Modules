@@ -74,6 +74,8 @@
 		"list": "cpp",
 		"__tree": "cpp",
 		"map": "cpp",
-		"version": "cpp"
+		"version": "cpp",
+		"cerrno": "cpp",
+		"climits": "cpp"
 	}
 }
