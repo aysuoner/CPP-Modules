@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:18:09 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/23 14:31:07 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/23 15:06:45 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,62 +25,62 @@ void	printDouble(double d)
 {
 	char c = static_cast<char>(d);
 	if (std::isnan(d) || std::isinf(d) || d < CHAR_MIN || d > CHAR_MAX)
-		std::cout << "char: impossible" << std::endl;
+		std::cout << "char:	impossible" << std::endl;
 	else if (std::isprint(c))
-		std::cout << "char: '" << c << "'" << std::endl;
+		std::cout << "char:	'" << c << "'" << std::endl;
 	else
-		std::cout << "char: Non displayable" << std::endl;
-	if (std::isnan(d) || std::isinf(d) || d > (double)INT_MAX || d < INT_MIN)
-		std::cout << "int: impossible" << std::endl;
+		std::cout << "char:	Non displayable" << std::endl;
+	if (std::isnan(d) || std::isinf(d) || d > (double)INT_MAX || d < (double)INT_MIN)
+		std::cout << "int:	impossible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(d) << std::endl;
-	std::cout << "float: " << static_cast<float>(d) << 'f' << std::endl;
-	std::cout << "double: " << d << std::endl;
+		std::cout << "int:	" << static_cast<int>(d) << std::endl;
+	std::cout << "float:	" << static_cast<float>(d) << 'f' << std::endl;
+	std::cout << "double:	" << d << std::endl;
 }
 
 void	printFloat(float f)
 {
 	char c = static_cast<char>(f);
 	if (std::isnan(f) || std::isinf(f) || f < CHAR_MIN || f > CHAR_MAX)
-		std::cout << "char: impossible" << std::endl;
+		std::cout << "char:	impossible" << std::endl;
 	else if (std::isprint(c))
-		std::cout << "char: '" << c << "'" << std::endl;
+		std::cout << "char:	'" << c << "'" << std::endl;
 	else
-		std::cout << "char: Non displayable" << std::endl;
+		std::cout << "char:	Non displayable" << std::endl;
 	if (std::isnan(f) || std::isinf(f) || f > (float)INT_MAX || f < (float)INT_MIN) // (float)INT_MIN) bu kullanılış???
-		std::cout << "int: impossible" << std::endl;
+		std::cout << "int:	impossible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(f) << std::endl;
-	std::cout << "float: " << f << 'f' << std::endl;
-	std::cout << "double: " << static_cast<double>(f) << std::endl;
+		std::cout << "int:	" << static_cast<int>(f) << std::endl;
+	std::cout << "float:	" << f << 'f' << std::endl;
+	std::cout << "double:	" << static_cast<double>(f) << std::endl;
 }
 
 void	printInt(long i)
 {
 	char c = static_cast<char>(i);
-	if (i < CHAR_MIN || i > CHAR_MAX)
-		std::cout << "char: impossible" << std::endl;
-	else if (std::isprint(c))
-		std::cout << "char: '" << c << "'" << std::endl;
+	if (std::isprint(c))
+		std::cout << "char:	'" << c << "'" << std::endl;
+	else if (i < CHAR_MIN || i > CHAR_MAX)
+		std::cout << "char:	impossible" << std::endl;
 	else
-		std::cout << "char: Non displayable" << std::endl;
+		std::cout << "char:	Non displayable" << std::endl;
 	if (i > INT_MAX || i < INT_MIN)
-		std::cout << "int: impossible" << std::endl;
+		std::cout << "int:	impossible" << std::endl;
 	else
-		std::cout << "int: " << i << std::endl;
-	std::cout << "float: " << static_cast<float>(i) << 'f' << std::endl;
-	std::cout << "double: " << static_cast<double>(i) << std::endl;
+		std::cout << "int:	" << i << std::endl;
+	std::cout << "float:	" << static_cast<float>(i) << 'f' << std::endl;
+	std::cout << "double:	" << static_cast<double>(i) << std::endl;
 }
 
 void	printChar(char c)
 {	
 	if (std::isprint(c))
-		std::cout << "char: '" << c << "'" << std::endl;
+		std::cout << "char:	'" << c << "'" << std::endl;
 	else
-		std::cout << "char: Non displayable" << std::endl; //bu else'e hangi koşulda girer?
-	std::cout << "int: " << static_cast<int>(c) << std::endl;
-	std::cout << "float: " << static_cast<float>(c) << 'f' << std::endl;
-	std::cout << "double: " << static_cast<double>(c) << std::endl;
+		std::cout << "char:	Non displayable" << std::endl; //bu else'e hangi koşulda girer?
+	std::cout << "int:	" << static_cast<int>(c) << std::endl;
+	std::cout << "float:	" << static_cast<float>(c) << 'f' << std::endl;
+	std::cout << "double:	" << static_cast<double>(c) << std::endl;
 }
 
 std::string	ScalarConverter::getType(const std::string input)
@@ -118,6 +118,9 @@ std::string	ScalarConverter::getType(const std::string input)
 	}
 }
 
+/*neden static cast tercih ettin.
+static cast nedir? avantajları?*/
+//neden bu programda strtolf,d yerine static kullanıldı tür dönüşümlerinde...
 void ScalarConverter::convert(const std::string input)
 {	
 	std::string type = getType(input);
