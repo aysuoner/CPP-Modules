@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:59:23 by buozdemi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:49:49 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/23 23:51:45 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ Base* generate(void)
 
 
 /* Dinamik örtüşme, bir alt sınıfın bir üst sınıf işaretçisiyle
-işaret edildiği durumlarda, alt sınıfın türünü belirlemek için kullanılır.  */
+işaret edildiği durumlarda, alt sınıfın türünü belirlemek için kullanılır.
+dynamic_cast işlemi, bir işaretçi ya da referansın,
+başka bir nesne türüne (sınıf hiyerarşisinde üst ya da alt sınıflara) dönüştürülmesini sağlar. */
 
 /* Pointer fonksiyonları genellikle nullptr olabilen işaretçilerle çalışırken,
 referans fonksiyonları genellikle nullptr olmayan referanslarla çalışır.
