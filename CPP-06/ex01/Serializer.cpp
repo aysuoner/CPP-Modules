@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 20:18:22 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/23 20:03:00 by aoner            ###   ########.fr       */
+/*   Created: 2023/04/23 20:06:06 by aoner             #+#    #+#             */
+/*   Updated: 2023/04/23 20:06:09 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
 
-int main (int argc, char **argv)
+Serializer::Serializer() {}
+
+Serializer::Serializer(Serializer const &) {}
+
+Serializer &Serializer::operator=(Serializer const &) { return *this; }
+
+Serializer::~Serializer() {}
+
+uintptr_t Serializer::serialize(Data *ptr)
 {
-	if (argc != 2)
-	{
-		std::cout << "Usage: ./convert [input]" << std::endl;
-		return (0);
-	}
-	ScalarConverter::convert(std::string(argv[1]));
+	return reinterpret_cast<uintptr_t>(ptr);
 }
 
+Data* Serializer::deserialize(uintptr_t raw)
+{
+	return reinterpret_cast<Data*>(raw);
+}

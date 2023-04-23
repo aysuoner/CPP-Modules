@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:18:09 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/23 17:44:59 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/23 19:40:11 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(ScalarConverter const &) {}
 
-ScalarConverter	& ScalarConverter::operator=(ScalarConverter const &)
-{ return *this; }
+ScalarConverter	& ScalarConverter::operator=(ScalarConverter const &){return *this;
+}
 
 ScalarConverter::~ScalarConverter() {}
 
