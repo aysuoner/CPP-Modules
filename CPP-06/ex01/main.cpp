@@ -6,12 +6,29 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 20:06:47 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/23 20:28:59 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/23 22:09:46 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
 #include "Data.hpp"
+
+/*
+static bir class'ın ortodoks canonical formu nasıl tanımlanır?
+*/
+
+/* uintptr_t veri tipi nedir ne işe yarar neden kullanırız? 
+adres değerlerinin tamsayı değerlerine dönüştürülmesi için kullanılır.
+Bu, bir işaretçinin değerini tamsayı olarak temsil etmek istediğimiz durumlarda kullanışlıdır.
+uintptr_t tipi, tam sayı bir türdür ve herhangi bir veri türüne ait bellek adresini verinin
+türünden bağımsız olarak saklanabilir. */
+
+/*
+neden reinterpret_cast kullandık?
+reinterpret_cast, bir veri tipinin
+bellek adresini başka bir veri tipinin bellek adresine dönüştürmek için kullanılır.
+Bu operatörü kullanarak, bir veri türünün bellek adresini uintptr_t veya void gibi bir işaretçi türüne dönüştürebiliriz.
+*/
 
 int main ()
 {
