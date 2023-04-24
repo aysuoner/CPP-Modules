@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 16:59:23 by buozdemi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:51:45 by aoner            ###   ########.fr       */
+/*   Created: 2023/04/24 11:01:42 by aoner             #+#    #+#             */
+/*   Updated: 2023/04/24 11:26:23 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	identify(Base &p)
 	Base	ptr;
 	try
 	{
-		ptr = dynamic_cast<A&>(p);
+		ptr = dynamic_cast<A &>(p);
 		std::cout << "A" << std::endl;
 	}
 	catch(std::exception& e) {}

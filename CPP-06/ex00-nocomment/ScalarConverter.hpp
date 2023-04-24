@@ -1,7 +1,6 @@
 #ifndef SCALARCONVERTER_HPP
 #define SCALARCONVERTER_HPP
 
-//bunların hangi fonksiyonlar için kullanıldığını öğren?
 #include <iostream>
 #include <string>
 #include <cstdlib>

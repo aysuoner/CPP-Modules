@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:18:09 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/23 19:40:11 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/24 12:48:44 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ std::string	getType(const std::string input)
 				endptr = NULL;
 				std::strtof(input.c_str(), &endptr);
 				if ((endptr[0] == 'f' && endptr[1] == 0)) {
-				return "float";
+					return "float";
 				}
 				else {
 					return "unknown";
@@ -121,13 +121,17 @@ std::string	getType(const std::string input)
 void ScalarConverter::convert(const std::string input)
 {	
 	std::string type = getType(input);
-	if (type == "char") {
+	if (type == "char")
+	{
 		char c = input[0];
 		printChar(c);
-	} else if (type == "int") {
+	}
+	else if (type == "int")
+	{
 		long l = std::atol(input.c_str());
 		printInt(l);
-	} else if (type == "float") {
+	}
+	else if (type == "float") {
 		float f = std::strtof(input.c_str(), NULL);
 		printFloat(f);
 	} else if (type == "double") {
