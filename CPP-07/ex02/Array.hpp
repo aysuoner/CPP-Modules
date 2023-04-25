@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <exception>
+#include <unistd.h>
 
 template <typename T>
 class Array

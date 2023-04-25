@@ -6,14 +6,15 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 17:53:56 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/25 18:07:28 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/25 20:16:23 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 template <typename T>
-Array<T>::Array(void): _size(0)
+Array<T>::Array(void)
 {
-	_arr = new T[_size]; //doğru mu? kontrolllll 
+	_size = 0;
+	_arr = new T[0];
 }
 
 template <typename T>
@@ -27,7 +28,6 @@ template <typename T>
 Array<T>::Array(const Array& other)
 {
 	_size = other._size;
-	//_arr != NULL;  kontrolü gibi bir şey olmamalı mı?
 	_arr = new T[_size];
     for (unsigned int i(0); i < _size; i++){
         _arr[i] = other._arr[i];
@@ -35,7 +35,7 @@ Array<T>::Array(const Array& other)
 }
 
 template <typename T>
-Array<T> &Array<T>::operator=(const Array& other) //doğru mu?
+Array<T> &Array<T>::operator=(const Array& other)
 	{
         if (this != &other)
 		{
@@ -52,7 +52,7 @@ Array<T> &Array<T>::operator=(const Array& other) //doğru mu?
 template <typename T>
 T& Array<T>::operator[](unsigned int i) const
 {
-    if ( i >= _size ) // && i >= 0 kontrolü bu kontrlü yapmadan 0bir değer ver ama...
+    if ( i >= _size )
         throw OutOfBoundsException();
     return _arr[i];
 }
@@ -69,8 +69,9 @@ Array<T>::~Array(void)
 }
 
 template <typename T>
-const char *Array<T>::OutOfBoundsException::what() const throw(){
-				return "Index is out of bounds";
+const char *Array<T>::OutOfBoundsException::what() const throw()
+{
+	return "Index is out of bounds";
 }
 
 template <typename T>

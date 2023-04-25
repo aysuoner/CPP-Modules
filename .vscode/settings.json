@@ -76,6 +76,8 @@
 		"map": "cpp",
 		"version": "cpp",
 		"cerrno": "cpp",
-		"climits": "cpp"
+		"climits": "cpp",
+		"*.tpp": "cpp",
+		"__verbose_abort": "cpp"
 	}
 }
