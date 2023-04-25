@@ -1,4 +1,4 @@
-NAME = type_template
+NAME = whatever
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
