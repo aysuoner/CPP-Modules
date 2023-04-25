@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:11:24 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/25 12:04:22 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/25 17:49:30 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ int main( void )
     return ( 0 );
 }*/
 
-int main(void)
+/* int main(void)
 {
     Array<int> a(10);
-    
+
     try
     {
         a[6] = 8;
         std::cout << a[6] << std::endl;
-        std::cout << a[50] << std::endl;
+        std::cout << a[10] << std::endl;
     }
     catch(std::exception &e)
     {
@@ -60,10 +60,9 @@ int main(void)
     }
     return (0);
 }
+ */
 
-
-/* #include <iostream>
-#include <Array.hpp>
+#include <iostream>
 
 #define MAX_VAL 750
 int main(int, char**)
@@ -115,4 +114,3 @@ int main(int, char**)
     delete [] mirror;//
     return 0;
 }
- */

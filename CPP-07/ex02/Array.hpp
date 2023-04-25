@@ -5,7 +5,7 @@
 #include <iostream>
 #include <exception>
 
-template <class T>
+template <typename T>
 class Array
 {
 private:
@@ -13,69 +13,30 @@ private:
 	unsigned int	_size;
 
 public:
-    Array(void) : _size(0)
-	{
-		_arr = new T[0]; 
-	};
-    Array(unsigned int n)
-	{
-		_size = n;
-		_arr = new T[n];
-	};
-    Array(const Array& rhs)
-	{
-		_size = rhs._size;
-		_arr = new T[_size];
-        for (unsigned int i(0); i < _size; i++){
-            _arr[i] = rhs._arr[i];
-		}
-    };
+    Array(void);
 
-    Array& operator=(const Array& rhs)
-	{
-        if (this != &rhs)
-		{
-            delete[] _arr;
-            _size = rhs._size;
-            _arr = new T[_size];
-            for (unsigned int i(0); i < _size; i++){
-                _arr[i] = rhs._arr[i];
-			}
-        }
-        return *this;
-    }
+    Array(unsigned int n);
 
-    T& operator[](unsigned int i) const
-	{
-        if ( i >= _size )
-            throw OutOfBoundsException();
-        return _arr[i];
-    }
+    Array(const Array& other);
 
-    unsigned int  size(void) const
-	{
-		return _size;
-	}
+    Array& operator=(const Array& other);
 
-    ~Array(void)
-	{
-		delete[] _arr;
-	}
+    T& operator[](unsigned int i) const;
 
-    class OutOfBoundsException : public std::exception {
+    unsigned int  size(void) const;
+
+    ~Array(void);
+
+    class OutOfBoundsException : public std::exception
+	{
         public:
-            virtual const char* what() const throw(){
-				return "Index is out of bounds";
-			}
+            virtual const char* what() const throw();
     };
 };
 
 template < typename T >
-std::ostream& operator<<(std::ostream& out, const Array<T>& arr)
-{
-    for (unsigned int i(0); i < arr.size(); i++)
-        out << arr[i] << " ";
-    return out;
-};
+std::ostream& operator<<(std::ostream& out, const Array<T>& arr);
+
+#include "Array.tpp"
 
 #endif
