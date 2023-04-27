@@ -1,11 +1,12 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdlib>
 #include <vector>
 #include <list>
-#include <algorithm>
-#include <iostream>
-#include <cstdlib>
 
 class Span
 {
@@ -21,10 +22,10 @@ public:
 	Span &operator=(const Span &copy);
 
 	void	addNumber(int val);
-	void	fill_all( std::vector<int>::iterator begin, std::vector<int>::iterator end);
-	int		longestSpan();
 	int		shortestSpan();
+	int		longestSpan();
 	void	print_span();
+	void	fill_all( std::vector<int>::iterator begin, std::vector<int>::iterator end);
 
 	class TooMuchCount: public std::exception
 	{

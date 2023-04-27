@@ -29,5 +29,4 @@ typename T::iterator easyfind(T &src, int i)
 	return (it_ptr);
 }
 
-
 #endif

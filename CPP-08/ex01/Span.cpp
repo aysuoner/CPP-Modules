@@ -6,21 +6,25 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:46:53 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/15 21:44:11 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/27 15:42:48 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
+/* size();
+ push_back();
+ difference between end-back AND  front-begin */
+
 //	-----------	Orthodox Canonical Form	-----------
 Span::Span(void)
 {
-	this->_n		= 0;
+	this->_n = 0;
 }
 
 Span::Span(unsigned int n)
 {
-	this->_n		= n;
+	this->_n = n;
 }
 
 Span::~Span()
@@ -43,15 +47,15 @@ Span &Span::operator=(const Span &copy)
     return (*this);
 }
 
-//	-----------	Member Funtions	-----------
+//	-----------	Member Functions -----------
 void Span::addNumber(int val)
 {
 	try
 	{
-		if (_v.size() == _n)
+		if (this->_v.size() == this->_n)
 			throw TooMuchCount();
 		else
-			_v.push_back(val);
+			this->_v.push_back(val);
 	}
 	catch(const std::exception& e)
 	{
@@ -75,6 +79,26 @@ void Span::fill_all(std::vector<int>::iterator begin, std::vector<int>::iterator
 	{
 		std::cerr << e.what() << '\n';
 	}
+}
+
+int Span::longestSpan()
+{
+	try
+	{
+		if (_v.size() < 2)
+			throw TooFewCount();
+		else
+		{
+       		 std::sort(_v.begin(), _v.end());
+       		 int max = _v.back() - _v.front();
+       		 return max;
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	return (0);
 }
 
 int Span::shortestSpan()
@@ -109,26 +133,6 @@ int Span::shortestSpan()
 	return (0);
 }
 
-int Span::longestSpan()
-{
-	try
-	{
-		if (_v.size() < 2)
-			throw TooFewCount();
-		else
-		{
-       		 std::sort(_v.begin(), _v.end());
-       		 int max = _v.back() - _v.front();
-       		 return max;
-		}
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	return (0);
-}
-
 void	Span::print_span(void)
 {
 	std::vector<int>::iterator begin = _v.begin();
@@ -138,27 +142,13 @@ void	Span::print_span(void)
 	}
 }
 
-//	-----------	Exception Messages	-----------
+//	-----------	Exception Messages -----------
 const char *Span::TooFewCount::what() const _NOEXCEPT
 {
-	return("\033[31mToofewcount!!\033[0m");
+	return("\033[31m\nToofewcount!!\033[0m");
 }
 
 const char* Span::TooMuchCount::what() const _NOEXCEPT
 {
-	return ("\033[31mThere are already N elements stored!!\033[0m");
+	return ("\033[31m\nThere are already N elements stored!!\n\033[0m");
 }
-
-
-
-
-
-
-
-
-
-/* 		std::cout << "front:	" << v.front() << std::endl;
-		std::cout << "back:	" << v.back() << std::endl;
-		std::cout << "v[0]:	" << v[0]  << std::endl;
-		std::cout << "v[end]:	" << v[_count - 1]  << std::endl;
-*/
