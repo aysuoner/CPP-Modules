@@ -78,6 +78,7 @@
 		"cerrno": "cpp",
 		"climits": "cpp",
 		"*.tpp": "cpp",
-		"__verbose_abort": "cpp"
+		"__verbose_abort": "cpp",
+		"queue": "cpp"
 	}
 }
