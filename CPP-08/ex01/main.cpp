@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:53:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/27 15:44:14 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/28 12:16:35 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main(void)
 	v1.push_back(18);
 	v1.push_back(32);
 	v1.push_back(100);
-	sp1.fill_all(v1.begin(), v1.end());
+	sp1.add_all(v1.begin(), v1.end());
 	std::cout << "sp1: ";
 	sp1.print_span();
 
@@ -50,8 +50,8 @@ int main(void)
 	std::cout << "sp2-short:	" << sp2.shortestSpan() << std::endl;
 	std::cout << "sp2-long:	"  << sp2.longestSpan()	<< std::endl;
 
-	std::cout << white_code << "\n----RANDOM TEST -----" << reset_code << std::endl;	
-	Span sp3(200);
+	std::cout << white_code << "\n----RANDOM TEST-----" << reset_code << std::endl;	
+	Span sp3(10000);
 	std::vector<int> v2;
 	std::srand(std::time(NULL));
 	int val;
@@ -63,9 +63,9 @@ int main(void)
 			val = (std::rand() % (i + 100));
 		v2.push_back(val);
 	}
-	sp3.fill_all(v2.begin(), v2.end());
+	sp3.add_all(v2.begin(), v2.end());
 	std::cout << "sp3: ";
-	sp3.print_span();
+	//sp3.print_span();
 
 	std::cout << white_code << "\n\n----range TEST-3-----" << reset_code << std::endl;
 	std::cout << "sp3-short:	" << sp3.shortestSpan() << std::endl;

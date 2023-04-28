@@ -22,10 +22,10 @@ public:
 	Span &operator=(const Span &copy);
 
 	void	addNumber(int val);
-	int		shortestSpan();
-	int		longestSpan();
-	void	print_span();
-	void	fill_all( std::vector<int>::iterator begin, std::vector<int>::iterator end);
+	int		shortestSpan(void);
+	int		longestSpan(void);
+	void	print_span(void);
+	void	add_all( std::vector<int>::iterator begin, std::vector<int>::iterator end);
 
 	class TooMuchCount: public std::exception
 	{

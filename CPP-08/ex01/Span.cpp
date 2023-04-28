@@ -6,15 +6,11 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:46:53 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/27 21:57:02 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/28 12:13:40 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
-
-/* size();
- push_back();
- difference between end-back AND  front-begin */
 
 //	-----------	Orthodox Canonical Form	-----------
 Span::Span(void)
@@ -63,7 +59,7 @@ void Span::addNumber(int val)
 	}
 }
 
-void Span::fill_all(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+void Span::add_all(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
 	try
 	{
@@ -81,7 +77,7 @@ void Span::fill_all(std::vector<int>::iterator begin, std::vector<int>::iterator
 	}
 }
 
-int Span::longestSpan()
+int Span::longestSpan(void)
 {
 	try
 	{
@@ -101,7 +97,7 @@ int Span::longestSpan()
 	return (0);
 }
 
-int Span::shortestSpan()
+int Span::shortestSpan(void)
 {
 	int last = _v.size() - 1;
 	int temp;

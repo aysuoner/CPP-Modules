@@ -17,7 +17,7 @@ int main()
     //default;
     std::vector<int> v;
 
-    //size'ı 2 olan, 10 değerlerine sahip olan int arrayi
+    //size'ı 4 olan, 10 değerlerine sahip olan int arrayi
     std::vector<int> v1(4, 10);
     std::cout << "V1    " << v1[0] << " "<< v1[1]<< std::endl;
     std::cout << std::endl;

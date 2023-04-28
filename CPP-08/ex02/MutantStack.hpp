@@ -2,6 +2,7 @@
 # define MUTANTSTACK_HPP
 
 # include <iostream>
+# include <algorithm>
 # include <string>
 # include <stack>
 # include <list>

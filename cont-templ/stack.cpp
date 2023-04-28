@@ -14,7 +14,7 @@ elemanların giriş sırasının önemli olduğu, göz önünde bulundurulması 
 stack kullanıyorsak her zaman son giren elemanla işlem yapıyoruz demektir.
 */
 
-/* begin ve end medotları ile::: veri yapımızın bellek üzerinde hang iadreste başlayıp hangi adreste bittiğini almaya çalışıyoruz  pointer(iterator) üzerinden.
+/* begin ve end medotları ile::: veri yapımızın bellek üzerinde hangi adreste başlayıp hangi adreste bittiğini almaya çalışıyoruz  pointer(iterator) üzerinden.
 begin() metodu ile veri yapımızın başlangıç adresini alırken end() metodu ile  bellek üzerinde bittiği aderesi alırız.
 */
 
