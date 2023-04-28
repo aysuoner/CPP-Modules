@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:46:53 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/28 12:13:40 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/28 14:58:11 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,6 @@ int Span::longestSpan(void)
 
 int Span::shortestSpan(void)
 {
-	int last = _v.size() - 1;
-	int temp;
-	int min;
 	try
 	{
 		if (_v.size() < 2)
@@ -110,16 +107,16 @@ int Span::shortestSpan(void)
 		{
 			std::vector<int> v = _v;
 			std::sort(v.begin(), v.end());
-        	std::vector<int>::iterator ptr = v.begin();
-        	min = *(ptr +  last) - *(ptr + last - 1);
-			while(last >= 1)
+			std::vector<int> differences(v.size());
+			std::adjacent_difference(v.begin(), v.end(), differences.begin());
+			std::vector<int>::iterator ptr = differences.begin() + 1;
+			int min = *ptr;
+			for (; ptr != differences.end(); ++ptr)
 			{
-				temp = *(ptr + last) - *(ptr + last - 1);
-				if (temp <  min)
-					min = temp;
-				last--;
+				if (*ptr < min)
+					min = *ptr;
 			}
-        	return (min);
+			return (min);
         }
 	}
 	catch(const std::exception& e)

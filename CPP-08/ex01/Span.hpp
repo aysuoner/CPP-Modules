@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <vector>
 #include <list>
+#include <numeric>
 
 class Span
 {

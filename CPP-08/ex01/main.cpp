@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:53:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/04/28 12:16:35 by aoner            ###   ########.fr       */
+/*   Updated: 2023/04/28 15:07:50 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ int main(void)
 	sp1.print_span();
 
 	std::cout << white_code << "\n\n----range TEST-1-----" << reset_code << std::endl;
-	std::cout << "sp1-short:	" << sp1.shortestSpan()	<< std::endl;
-	std::cout << "sp1-long:	" << sp1.longestSpan()	<< std::endl;
+	std::cout << "sp1-short: " << sp1.shortestSpan()	<< std::endl;
+	std::cout << "sp1-long: " << sp1.longestSpan()	<< std::endl;
 	
 	std::cout << white_code << "\n\n----range TEST-2-----" << reset_code << std::endl;
 	Span sp2(23);
-	std::cout << "sp2-short:	" << sp2.shortestSpan() << std::endl;
+	std::cout << "sp2-short: " << sp2.shortestSpan() << std::endl;
 	std::cout << "sp2-long:	"  << sp2.longestSpan()	<< std::endl;
 	sp2.addNumber(42);
-	std::cout << "sp2-short:	" << sp2.shortestSpan() << std::endl;
-	std::cout << "sp2-long:	"  << sp2.longestSpan()	<< std::endl;
+	std::cout << "sp2-short: " << sp2.shortestSpan() << std::endl;
+	std::cout << "sp2-long: " << sp2.longestSpan()	<< std::endl;
 
 	std::cout << white_code << "\n----RANDOM TEST-----" << reset_code << std::endl;	
 	Span sp3(10000);
@@ -68,24 +68,8 @@ int main(void)
 	//sp3.print_span();
 
 	std::cout << white_code << "\n\n----range TEST-3-----" << reset_code << std::endl;
-	std::cout << "sp3-short:	" << sp3.shortestSpan() << std::endl;
-	std::cout << "sp3-long:	"  << sp3.longestSpan()	<< std::endl;
+	std::cout << "sp3-short: " << sp3.shortestSpan() << std::endl;
+	std::cout << "sp3-long: " << sp3.longestSpan()	<< std::endl;
 
-	std::cout << white_code << "\n\n----copytest1-----" << reset_code << std::endl;
-	sp3 = sp2;
-	std::cout << "sp3: ";
-	sp3.print_span();
-	std::cout << std::endl;
-	std::cout << "sp3-short:	" << sp3.shortestSpan() << std::endl;
-	std::cout << "sp3-long:	"  << sp3.longestSpan()	<< std::endl;
-
-	std::cout << white_code << "\n\n----copytest2-----" << reset_code << std::endl;
-	Span sp4(sp1);
-	std::cout << "sp2: ";
-	sp4.print_span();
-	std::cout << std::endl;
-	std::cout << "sp4-short:	" << sp4.shortestSpan() << std::endl;
-	std::cout << "sp4-long:	"  << sp4.longestSpan()	<< std::endl;
-	
 	return 0;
 }
