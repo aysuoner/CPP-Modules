@@ -1,6 +1,10 @@
 #include <iostream>
 #include <vector>
 
+/* Vektörler, bir öğe eklendiğinde veya silindiğinde kendilerini otomatik
+olarak yeniden boyutlandırma yeteneğine sahip dinamik dizilerle aynıdır ve
+depolamaları kapsayıcı tarafından otomatik olarak işlenir. */
+
 template <typename T>
 void    printv(std::vector<T> &v)
 {
