@@ -6,17 +6,14 @@
 #include <algorithm>
 #include <fstream>
 #include <vector>
+#include <sstream>
+#include <ctime>
+#include <iomanip>
 
-class BitcoinExchange
-{
-private:
-	std::string _fileName;
-public:
-	BitcoinExchange(/* args */);
-	~BitcoinExchange();
 
-	void	set_fileName(std::string argv);
-	void	file_ctrl(std::vector<std::string> &_v);
-};
+bool		is_valid_date(const std::string& date);
+std::string	is_valid_value(const std::string& value);
+
+
 
 #endif
