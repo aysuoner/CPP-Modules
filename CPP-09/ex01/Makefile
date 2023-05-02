@@ -1,11 +1,11 @@
 NAME = RPN
-SRCS = main.cpp
+SRCS = main.cpp RPN.cpp
 OBJS = $(SRCS:.cpp=.o)
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) RPN.hpp
 	c++ $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 clean:
