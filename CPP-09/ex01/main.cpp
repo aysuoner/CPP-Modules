@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:00:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/02 20:18:22 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/03 20:24:08 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,53 +56,46 @@ int main(int argc, char **argv)
 		std::cerr << "bir rakam veya bir islem olmali";
 		return(EXIT_FAILURE);
 	}
-	//count = 5;
-
-	//bunu yap "8  9 - 9"
-	
-	std::stack<int> _sVal;
+	std::stack<float> _sVal;
 	std::stack<char> _sOperant;
 
-	int i = 0;
-	int val;
-	int first;
-	int second;
-	char oper;
+	int		i = 0;
+	float	val;
+	float	first;
+	float	second;
+	char	oper;
+	//bunu yap "8  9 - 9" //invalid
+	//"3 1 1 1 1 2 * * * + 2 1 5 * + -" //invalid
+	//"8 4 * 3 9 - + 2 *"  valid res: 54
+	//"8 4 * 3 9 - + 2"  invalid
+	//"2 + 3 * 4 / 2 - 1" invalid
+	//"2 3 * 4 6 5 6 2 /"  invalid
 	while(i < count)
 	{
-		if (_sVal.size() != 2 && std::isdigit(arr[i][0]))
+		if (isdigit(arr[i][0]))
 		{
-			val = atoi(arr[i].c_str());
+			val = atof(arr[i].c_str());
 			_sVal.push(val);
-			i++;
 		}
-		else if (_sVal.size() != 2 && !std::isdigit(arr[i][0]))
+		else if (!isdigit(arr[i][0]) && _sVal.size() < 2)
 		{
-			std::cout << "ulaaapolish degil" << std::endl;
-			return (0);
-		}
-		if (_sVal.size() == 2 && !std::isdigit(arr[i][0]))
-		{
-			_sOperant.push(arr[i][0]);
-			i++;
-		}
-		else if (_sVal.size() == 2 && std::isdigit(arr[i][0]))
-		{
-			std::cout << "polish degil" << std::endl;
-			return (0);
-		}
-		else if (_sVal.size() != 2 && i + 1 == count){
-			std::cout << "yakaladumsanuulaaapolish degil" << std::endl;
+
+			//hangi operator olduğunu hata mesajında göster.
+			std::cout << "uladursin";
 			return(0);
 		}
-		if (_sVal.size() == 2 && _sOperant.size() == 1)
+		else if (!isdigit(arr[i][0]))
 		{
-			second =_sVal.top();
-			_sVal.pop();
-			first =_sVal.top();
-			_sVal.pop();
-			oper =_sOperant.top();
+			_sOperant.push(arr[i][0]);
+		}
+		if (_sVal.size() >= 2 && _sOperant.size() >= 1)
+		{
+			oper = _sOperant.top();
 			_sOperant.pop();
+			second = _sVal.top();
+			_sVal.pop();
+			first = _sVal.top();
+			_sVal.pop();
 			if (oper == '-')
 			{
 				_sVal.push(first - second);
@@ -120,7 +113,16 @@ int main(int argc, char **argv)
 				_sVal.push(first / second);
 			}
 		}
+/* 		else if (_sVal.size() >= 2 && i + 1 == count)
+		{
+			std::cout << "ulaburadacikti bi namussuz";
+			return(0);
+		} */
+		i++;
 	}
-	std::cout << _sVal.top() << std::endl;
+	if (_sVal.size() == 1 && _sOperant.size() == 0)
+		std::cout << "val:" << _sVal.top();
+	else
+		std::cout << "burda da yakalandunnnnkacamazsunbenden";
 	return(0);
 }

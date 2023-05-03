@@ -8,7 +8,5 @@
 #include <array> 
 #include <list> 
 
-/* int		word_count(char *argv);
-bool	char_ctrl(char *argv, std::string* str, int count); */
 
 #endif
