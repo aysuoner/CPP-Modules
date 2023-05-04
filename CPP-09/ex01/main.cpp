@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:00:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/04 14:27:28 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/04 17:21:38 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,21 @@ int main(int argc, char **argv)
         std::cerr << "Usage: ./RPN 'expression'";
         return (EXIT_FAILURE);
     }
-
-    std::string convrt(argv[1]);
-    int count = word_count(convrt);
-    std::string arr[count];
-    if (fill_and_check_string(convrt, arr, count) == false)
+	
+	RPN::param = argv[1];
+	RPN::word_count(RPN::param);
+    std::string arr[RPN::count]; //düz string haline getir.
+	
+    if (RPN::fill_and_check_string(arr) == false)
 	{
 		std::cerr << "bir rakam veya bir islem olmali";
 		return(EXIT_FAILURE);
 	}
-	std::stack<float> _sVal;
-	std::stack<char> _sOperant;
 
-	if (polish_handle(arr, _sVal, _sOperant, count) == true)
+	if (RPN::polish_handle(arr) == true)
 	{
-		if (_sVal.size() == 1 && _sOperant.size() == 0)
-			std::cout << "val:" << _sVal.top();
+		if (RPN::_sVal.size() == 1 && RPN::_sOperant.size() == 0)
+			std::cout << "val:" << RPN::_sVal.top();
 		else
 			std::cout << "derhal";
 	}
@@ -55,9 +54,3 @@ int main(int argc, char **argv)
 //"2 3 * 4 6 5 6 2 /"  invalid
 //"1 2 1 2 1 2 + * + 3 * -" invalid
 // "8 4 6 7 3 9 + * + * -" res: -352
-
-/* 		else if (_sVal.size() >= 2 && i + 1 == count)
-		{
-			std::cout << "ulaburadacikti bi namussuz";
-			return(0);
-		} */

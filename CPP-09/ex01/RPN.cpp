@@ -6,20 +6,61 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:59:41 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/04 14:09:39 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/04 17:22:55 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-bool	polish_handle(std::string const  *arr, std::stack<float> &_sVal, std::stack<char> &_sOperant, int count)
+int RPN::count = 0;
+float	RPN::val = 0;
+float	RPN::first = 0;
+float	RPN::second = 0;
+std::string RPN::param = "";
+std::stack<float> RPN::_sVal;
+std::stack<char> RPN::_sOperant;
+
+RPN::RPN(/* args */)
+{
+}
+
+RPN::~RPN()
+{
+}
+
+void	RPN::word_count(std::string param)
+{
+    std::stringstream ss(param);  
+    std::string word;
+    while (ss >> word)
+        count++;
+}
+
+bool	RPN::fill_and_check_string(std::string* arr)
+{
+    std::stringstream ss(param);
+    std::string word;
+    for (int i = 0; i < count; i++)
+	{
+        ss >> arr[i];
+		if (arr[i].length() != 1) {
+				return(false);
+		}
+		else if (!std::isdigit(arr[i][0]) && arr[i][0] != '-' && arr[i][0] != '+' \
+				&& arr[i][0] != '*' && arr[i][0] != '/')
+		{
+			return(false);
+		}
+	}
+	return(true);
+}
+
+bool	RPN::polish_handle(std::string const *arr)
 {
 	int		i = 0;
-	float	val;
-	float	first;
-	float	second;
 	char	oper;
 
+	//bunu ikiye böl;
 	while(i < count)
 	{
 		if (isdigit(arr[i][0]))
@@ -63,33 +104,4 @@ bool	polish_handle(std::string const  *arr, std::stack<float> &_sVal, std::stack
 		i++;
 	}
 	return (true);
-}
-
-int word_count(std::string str)
-{
-    std::stringstream ss(str);  
-    std::string word;
-    int count = 0;
-    while (ss >> word) {
-        count++;
-    }
-    return count;
-}
-
-bool	fill_and_check_string(std::string str, std::string* arr, int count)
-{
-    std::stringstream ss(str);
-    std::string word;
-    for (int i = 0; i < count; i++)
-	{
-        ss >> arr[i];
-		if (arr[i].length() != 1) {
-				return(false);
-		}
-		else if (!std::isdigit(arr[i][0]) && arr[i][0] != '-' && arr[i][0] != '+' \
-				&& arr[i][0] != '*' && arr[i][0] != '/') {
-			return(false);
-		}
-	}
-	return(true);
 }

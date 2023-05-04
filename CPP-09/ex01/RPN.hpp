@@ -4,9 +4,7 @@
 #include <stack>
 #include <iostream>
 #include <string>
-#include <sstream> 
-#include <array> 
-#include <list> 
+#include <sstream>
 
 typedef enum
 { 
@@ -16,8 +14,25 @@ typedef enum
   multiplication	= '*',
 } operant_t; 
 
-int word_count(std::string str);
-bool	fill_and_check_string(std::string str, std::string* arr, int count);
-bool	polish_handle(std::string const  *arr, std::stack<float> &_sVal, std::stack<char> &_sOperant, int count);
+class RPN
+{
+	private:
+	public:
+		//ortodoks ekle;
+		RPN(/* args */);
+		~RPN();
+
+		static std::string param;
+		static int		count;
+		static float	val;
+		static float	first;
+		static float	second;
+		static std::stack<float> _sVal;
+		static std::stack<char> _sOperant;
+
+		static	void	word_count(std::string param);
+		static bool	fill_and_check_string(std::string* arr);
+		static bool	polish_handle(std::string const  *arr);
+};
 
 #endif
