@@ -1,11 +1,11 @@
 NAME = PmergeMe
-SRCS = main.cpp
+SRCS = main.cpp PmergeMe.cpp
 OBJS = $(SRCS:.cpp=.o)
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) PmergeMe.hpp
 	c++ $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 clean:
