@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:22:12 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/21 21:41:12 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/21 22:56:36 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,28 @@ std::ios::in, std::ios::out(yazma mod) std::ios::app(sona ekleme mod) std::ios::
 
 int	find_same_date_indx(const std::string& targetDate, const std::vector<std::pair<std::string, double> >& _vData)
 {
-    int	n = _vData.size();
-    int	left = 0;
-	int	right = n-1;
+    int	up = 0;
+	int	down = _vData.size() - 1;
 	int	mid;
-    while (left <= right)
+    while (up <= down)
 	{
-        mid = (left + right) / 2;
+        mid = (up + down) / 2;
         if (_vData[mid].first == targetDate) {
             return mid;
         }
 		else if (_vData[mid].first < targetDate) {
-            left = mid + 1;
+            up = mid + 1;
         }
 		else {
-            right = mid - 1;
+            down = mid - 1;
         }
     }
     // If the target date is not found, return the index of the nearest lower date
-    if (right < 0) {
+    if (down < 0) {
         return -1; // There is no lower date, return an invalid index
     }
 	else {
-        return right;
+        return down;
     }
 }
 
