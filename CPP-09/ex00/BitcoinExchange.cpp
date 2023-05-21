@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:22:12 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/21 17:46:22 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/21 21:41:12 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,55 +54,76 @@ Dosyanın okuma modunda açılmasını gösterir. Eğer open fonksiyonunu tek pa
 std::ios::in, std::ios::out(yazma mod) std::ios::app(sona ekleme mod) std::ios::trunc(dosya açılırken içeriği siler)
 */
 
-bool	file_check(const std::string fileName, std::ifstream &file)
+int	find_same_date_indx(const std::string& targetDate, const std::vector<std::pair<std::string, double> >& _vData)
 {
-    file.open(fileName.c_str(), std::ios::in);
-    if (!file.is_open())
-    {
-        std::cerr << "Error: File cannot be opened" << std::endl;
-		file.close();
-        return false;
+    int	n = _vData.size();
+    int	left = 0;
+	int	right = n-1;
+	int	mid;
+    while (left <= right)
+	{
+        mid = (left + right) / 2;
+        if (_vData[mid].first == targetDate) {
+            return mid;
+        }
+		else if (_vData[mid].first < targetDate) {
+            left = mid + 1;
+        }
+		else {
+            right = mid - 1;
+        }
     }
-    return true;
+    // If the target date is not found, return the index of the nearest lower date
+    if (right < 0) {
+        return -1; // There is no lower date, return an invalid index
+    }
+	else {
+        return right;
+    }
 }
 
-bool	fill_input(std::ifstream &file, std::vector<std::pair<std::string, std::string> > &_vInput)
+void	print_and_handle(const std::vector<std::pair<std::string, std::string> > &_v, const std::vector<std::pair<std::string, double> > &_vData)
+{
+	double  multiple;
+	int		indx; 
+	
+	for (std::vector<std::pair<std::string, std::string> >::const_iterator it = _v.begin(); it != _v.end(); ++it)
+	{
+		if (it->first == "bad" || it->second == "bad") {
+			std::cout << "Error: bad input" << std::endl;	
+		} else if (it->second == "max") {
+			std::cout << "Error: too large a number." << std::endl;	
+		} else if (it->second == "min") {
+			std::cout << "Error: not a positive number." << std::endl;	
+		} else {
+			indx = find_same_date_indx(it->first, _vData);
+			multiple = strtof(it->second.c_str(), NULL) * _vData[indx].second;
+			std::cout << it->first << " => " << it->second << " = " << multiple << std::endl;
+		}
+	}
+}
+
+void	fill_data_base(std::ifstream &file, std::vector<std::pair<std::string, double> > &_vData)
 {
 	size_t		pos;
 	std::string	line;
-	std::string	val;
 	std::string	date;
+	std::string	val;
+	double		btc;
 
-	while (std::getline(file, line))
+	std::getline(file, line);
+	while(std::getline(file, line))
 	{
-		pos = line.find(" | ");
+		pos = line.find(",");
 		if (pos != std::string::npos)
 		{
         	date = line.substr(0, pos);
-        	val = line.substr(pos+3);
-        	_vInput.push_back(std::make_pair(date, val));
+        	val = line.substr(pos+1);
+			btc = strtod(val.c_str(), NULL);
+        	_vData.push_back(std::make_pair(date, btc));
         }
-		else
-			_vInput.push_back(std::make_pair("-1", "-1")); //sadece bir parse girildiyse. "Bad input" hatası alsın.
 	}
-	if (_vInput.size() == 0) //dosyanın içi boşsa. file is empty hatası alır.
-		return false;
 	file.close();
-	return true;
-}
-
-void	mark_invalid_input(std::vector<std::pair<std::string, std::string> > &_v)
-{
-	int i = 0;
-	for (std::vector<std::pair<std::string, std::string> >::const_iterator it = _v.begin(); it != _v.end(); ++it)
-	{
-		if (is_valid_date(it->first) == false || is_valid_value(it->second) == "false")
-		{
-			_v[i].first = "-1";
-			_v[i].second = "-1";
-		}
-		i++;
-	}
 }
 
 bool	is_valid_date(const std::string& date)
@@ -152,7 +173,7 @@ std::string	is_valid_value(const std::string& value)
 	for(; i < value.length() && value[i] != ' '; i++);
 
 	if (value.empty() || i != value.length()) {
-		return "false";
+		return "bad";
 	}
 	else
 	{
@@ -160,8 +181,10 @@ std::string	is_valid_value(const std::string& value)
 		long l = std::strtol(value.c_str(), &endptr, 0);
 		if (*endptr == '\0')
 		{
-			if (l > 1000 || l < 0)
-				return "false";
+			if (l > 1000)
+				return "max";
+			else if (l < 0)
+				return "min";
 			return "int";
 		}
 		else
@@ -170,86 +193,74 @@ std::string	is_valid_value(const std::string& value)
 			float f = std::strtof(value.c_str(), &endptr);
 			if (*endptr == '\0' || (endptr[0] == 'f' && endptr[1] == 0))
 			{
-				if (f > 1000 || f < 0)
-					return "false";
+				if (f > 1000)
+					return "max";
+				else if( f < 0)
+					return "min";
 				return "float";
 			}
 			else
-			{
-				return "false";
-			}
+				return "bad";
 		}
 	}
 }
 
-void	fill_data_base(std::ifstream &file, std::vector<std::pair<std::string, double> > &_vData)
+void	mark_invalid_input(std::vector<std::pair<std::string, std::string> > &_v)
 {
-	std::string	date;
-	std::string	val;
-	std::string	line;
-	size_t		pos;
-	double		btc;
-
-	while(std::getline(file, line))
-	{
-		pos = line.find(",");
-		if (pos != std::string::npos)
-		{
-        	date = line.substr(0, pos);
-        	val = line.substr(pos+1);
-			btc = strtod(val.c_str(), NULL);
-        	_vData.push_back(std::make_pair(date, btc));
-        }
-	}
-	file.close();
-}
-
-void	print_and_handle(const std::vector<std::pair<std::string, std::string> > &_v, const std::vector<std::pair<std::string, double> > &_vData)
-{
-	double  multiple;
-	int		indx; 
+	int i = 0;
+	std::string val;
 	
 	for (std::vector<std::pair<std::string, std::string> >::const_iterator it = _v.begin(); it != _v.end(); ++it)
 	{
-		if (it->first == "-1" || it->second == "-1")
+		if (is_valid_date(it->first) == true)
 		{
-			std::cout << "Error: bad input" << std::endl;	
+			val = is_valid_value(it->second);
+			if (val == "bad")
+				_v[i].second = "bad";
+			else if (val == "min")
+				_v[i].second = "min";
+			else if (val == "max")
+				_v[i].second = "max";
 		}
 		else
-		{
-			indx = find_same_date_indx(it->first, _vData);
-			multiple = strtod(it->second.c_str(), NULL) * _vData[indx].second;
-			std::cout << it->first << " => " << it->second << " = " << multiple << std::endl;
-		}
+			_v[i].first = "bad";
+		i++;
 	}
 }
 
-int	find_same_date_indx(const std::string& targetDate, const std::vector<std::pair<std::string, double> >& _vData)
+bool	fill_input(std::ifstream &file, std::vector<std::pair<std::string, std::string> > &_vInput)
 {
-    int	n = _vData.size();
-    int	left = 0;
-	int	right = n-1;
-	int	mid;
-    while (left <= right)
+	size_t		pos;
+	std::string	line;
+	std::string	val;
+	std::string	date;
+
+	while (std::getline(file, line))
 	{
-        mid = (left + right) / 2;
-        if (_vData[mid].first == targetDate)
+		pos = line.find(" | ");
+		if (pos != std::string::npos)
 		{
-            return mid;
-        }
-		else if (_vData[mid].first < targetDate)
-		{
-            left = mid + 1;
+        	date = line.substr(0, pos);
+        	val = line.substr(pos+3);
+        	_vInput.push_back(std::make_pair(date, val));
         }
 		else
-		{
-            right = mid - 1;
-        }
+			_vInput.push_back(std::make_pair("bad", "bad")); //sadece bir parse girildiyse. "Bad input" hatası alsın.
+	}
+	if (_vInput.size() == 0) //dosyanın içi boşsa. file is empty hatası alır.
+		return false;
+	file.close();
+	return true;
+}
+
+bool	file_check(const std::string fileName, std::ifstream &file)
+{
+    file.open(fileName.c_str(), std::ios::in);
+    if (!file.is_open())
+    {
+        std::cerr << "Error: File cannot be opened" << std::endl;
+		file.close();
+        return false;
     }
-    // If the target date is not found, return the index of the nearest lower date
-    if (right < 0) {
-        return -1; // There is no lower date, return an invalid index
-    } else {
-        return right;
-    }
+    return true;
 }
