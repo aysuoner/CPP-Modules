@@ -3,13 +3,13 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>  //ofstream - ifstream //getline()
+#include <utility> //std::pair<>
 #include <algorithm>
-#include <fstream>
 #include <vector>
 #include <sstream>
 #include <ctime>
 #include <iomanip>
-#include <utility>
 #include <cmath>
 
 bool		is_valid_date(const std::string& date);

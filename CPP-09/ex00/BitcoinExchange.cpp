@@ -6,15 +6,57 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:22:12 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/01 22:50:54 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/21 17:46:22 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
+/* std::ifstream(Input file stream class)
+C++ standart kütüphanesinde yer alan bir sınıftır.
+Bu sınıf, bir dosya okuma işlemi gerçekleştirmek için kullanılır.
+Dosyayı açmak için open() fonksiyonu kullanılır.
+Dosya açıldıktan sonra, is_open() fonksiyonu ile dosyanın açılıp
+açılmadığı kontrol edilir. Dosya işlemi tamamlandıktan sonra,
+close() fonksiyonu ile dosya kapatılır.
+std::ifstream, ayrıca get(), getline(), read() gibi işlevlerle
+birlikte kullanılabilir. Bu işlevler, dosyadan veri okumak için kullanılır.
+
+!!!!!!Eğer dosya açıldıysa, std::ifstream file nesnesi, dosyayı temsil eden bir
+giriş akışı nesnesine dönüşür. Dosyayı temsil eden bir giriş akışı nesnesine dönüşmek,
+dosyadan veri okuyabilmek için bir araç sağlamaktır.!!!!
+
+std::ifstream nesnesi, bir dosyanın verilerini okumak için kullanılan bir giriş akışı nesnesidir.
+Dosya açıldıktan sonra, std::ifstream nesnesi, dosyadan veri okumak, dosyayı sıfırlamak
+ve dosyayı kapamak için kullanılır. Bu nesne, dosyadan veri okumak ve diğer işlemleri
+gerçekleştirmek için kullanılabilir.*/
+
+/* std::ifstream ve std::ofstream, C++ standart kütüphanesinde yer alan sınıflardır.
+std::ifstream, dosya okuma işlemleri için kullanılırken,
+std::ofstream dosya yazma işlemleri için kullanılır.
+Her iki sınıf da fstream sınıfından türetilir ve open(),
+close() ve is_open() gibi fonksiyonlarla birlikte kullanılır.
+
+std::ifstream sınıfı, getline(), get() ve read() gibi işlevlerle birlikte kullanılarak,
+dosyadan veri okunabilir.
+Ayrıca, std::ofstream sınıfı, put(), write() ve flush() gibi
+işlevlerle birlikte kullanılarak, dosyaya veri yazılabilir.
+
+C++ standart kütüphanesi, fstream sınıfı aracılığıyla hem dosya okuma hem de dosya yazma işlemlerini destekler.
+Bu sınıf, std::ifstream ve std::ofstream sınıflarının özelliklerini birleştirir ve hem okuma hem de yazma
+işlemlerini tek bir nesne aracılığıyla yapmayı mümkün kılar.
+*/
+
+/*
+file.open(fileName.c_str(), std::ios::in);
+ikinci parametre ios_base isim alanı içinde tanımlı olan önceden tanımlanmış sembolik sabitler kullanılarak oluşturulabilir.
+Dosyanın okuma modunda açılmasını gösterir. Eğer open fonksiyonunu tek parametreli kullanırsak zaten default olarak okuma modunda açar.
+std::ios::in, std::ios::out(yazma mod) std::ios::app(sona ekleme mod) std::ios::trunc(dosya açılırken içeriği siler)
+*/
+
 bool	file_check(const std::string fileName, std::ifstream &file)
 {
-    file.open(fileName.c_str());
+    file.open(fileName.c_str(), std::ios::in);
     if (!file.is_open())
     {
         std::cerr << "Error: File cannot be opened" << std::endl;
@@ -24,29 +66,26 @@ bool	file_check(const std::string fileName, std::ifstream &file)
     return true;
 }
 
-bool	fill_input(std::ifstream &file, std::vector<std::pair<std::string, std::string> > &_v)
+bool	fill_input(std::ifstream &file, std::vector<std::pair<std::string, std::string> > &_vInput)
 {
-	std::string	date;
-	std::string	val;
-	std::string	line;
 	size_t		pos;
+	std::string	line;
+	std::string	val;
+	std::string	date;
 
-	while(std::getline(file, line))
+	while (std::getline(file, line))
 	{
 		pos = line.find(" | ");
 		if (pos != std::string::npos)
 		{
         	date = line.substr(0, pos);
         	val = line.substr(pos+3);
-        	_v.push_back(std::make_pair(date, val));
+        	_vInput.push_back(std::make_pair(date, val));
         }
 		else
-		{
-			std::string date = line.substr(0, pos);
-			_v.push_back(std::make_pair("-1", "-1"));
-		}
+			_vInput.push_back(std::make_pair("-1", "-1")); //sadece bir parse girildiyse. "Bad input" hatası alsın.
 	}
-	if (_v.size() == 0)
+	if (_vInput.size() == 0) //dosyanın içi boşsa. file is empty hatası alır.
 		return false;
 	file.close();
 	return true;
@@ -68,23 +107,26 @@ void	mark_invalid_input(std::vector<std::pair<std::string, std::string> > &_v)
 
 bool	is_valid_date(const std::string& date)
 {
-	// Date format should be "yyyy-mm-dd" //yyy*mm*dd hesaplamıyor?
+	char *endptr = NULL;
+	// Date format should be "yyyy-mm-dd"
     if (date.size() != 10) {
         return false;
     }
     // Check year
-    int year = std::stoi(date.substr(0, 4));
-    if (year < 0 || year > 9999 || date[4] != '-') {
+    int year = std::strtol(date.substr(0, 4).c_str(), &endptr, 10);
+    if (*endptr != '\0' || year < 2009 || year > 9999 || date[4] != '-') {
         return false;
     }
     // Check month
-    int month = std::stoi(date.substr(5, 2));
-    if (month < 1 || month > 12 || date[7] != '-' ) {
+	endptr = NULL;
+    int month = std::strtol(date.substr(5, 2).c_str(), &endptr, 10);
+    if (*endptr != '\0' || month < 1 || month > 12 || date[7] != '-' ) {
         return false;
     }
     // Check day
-    int day = std::stoi(date.substr(8, 2));
-    if (day < 1 || day > 31) {
+	endptr = NULL;
+    int day = std::strtol(date.substr(8, 2).c_str(), &endptr, 10);
+    if (*endptr != '\0' || day < 1 || day > 31 || (year == 2009 && month == 01 && day == 01)) {
         return false;
     }
     // Check if day is valid for the given month
@@ -105,8 +147,13 @@ bool	is_valid_date(const std::string& date)
 
 std::string	is_valid_value(const std::string& value)
 {
-	if (value.empty())
+	unsigned int i = 0;
+
+	for(; i < value.length() && value[i] != ' '; i++);
+
+	if (value.empty() || i != value.length()) {
 		return "false";
+	}
 	else
 	{
 		char* endptr = NULL;
@@ -128,7 +175,9 @@ std::string	is_valid_value(const std::string& value)
 				return "float";
 			}
 			else
+			{
 				return "false";
+			}
 		}
 	}
 }
@@ -204,33 +253,3 @@ int	find_same_date_indx(const std::string& targetDate, const std::vector<std::pa
         return right;
     }
 }
-
-
-
-
-/* bool dateComparator(const std::pair<std::string, double>& lhs, const std::pair<std::string, double>& rhs) {
-    return lhs.first < rhs.first;
-}
-
-
-int findNearestLowerDateIndex(const std::vector<std::pair<std::string, double> >& vData, const std::string& date) {
-    int index = std::lower_bound(vData.begin(), vData.end(), std::make_pair(date, 0.0), dateComparator) - vData.begin();
-    if (index == 0) {
-        return -1;
-    }
-    return index - 1;
-}
-
-int	find_same_date_indx(const std::string& targetDate, const std::vector<std::pair<std::string, double> >& _vData)
-{
-	int index;
-	index = std::binary_search(_vData.begin(), _vData.end(), std::make_pair(targetDate, 0.0), dateComparator);
-	if (index)
-	{
-		return (index);
-    } else
-	{
-        int nearestIndex = findNearestLowerDateIndex(_vData, targetDate);
-		return (nearestIndex);
-	}
-} */
