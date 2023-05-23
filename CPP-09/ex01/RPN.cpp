@@ -6,13 +6,13 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:59:41 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/04 17:22:55 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/23 22:16:14 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-int RPN::count = 0;
+int		RPN::count = 0;
 float	RPN::val = 0;
 float	RPN::first = 0;
 float	RPN::second = 0;
@@ -36,6 +36,8 @@ void	RPN::word_count(std::string param)
         count++;
 }
 
+
+/* +3 +6 gibi sayılar olmamalı mı? */
 bool	RPN::fill_and_check_string(std::string* arr)
 {
     std::stringstream ss(param);

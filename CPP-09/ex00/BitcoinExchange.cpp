@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:22:12 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/21 22:56:36 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/23 21:44:53 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ Dosyanın okuma modunda açılmasını gösterir. Eğer open fonksiyonunu tek pa
 std::ios::in, std::ios::out(yazma mod) std::ios::app(sona ekleme mod) std::ios::trunc(dosya açılırken içeriği siler)
 */
 
+/* (binary search) algoritması */
 int	find_same_date_indx(const std::string& targetDate, const std::vector<std::pair<std::string, double> >& _vData)
 {
     int	up = 0;

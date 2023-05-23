@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:00:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/04 17:21:38 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/23 22:15:11 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 	return(EXIT_SUCCESS);
 }
 
-//bunu yap "8  9 - 9" //invalid
+//"8  9 - 9" //invalid
 //"3 1 1 1 1 2 * * * + 2 1 5 * + -" //invalid
 //"8 4 * 3 9 - + 2 *"  valid res: 52
 //"8 4 * 3 9 - + 2"  invalid
