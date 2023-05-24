@@ -4,7 +4,7 @@
 #include <stack>
 #include <iostream>
 #include <string>
-#include <sstream>
+#include <sstream> //std::stringstream
 
 typedef enum
 { 
@@ -17,22 +17,23 @@ typedef enum
 class RPN
 {
 	private:
-	public:
-		//ortodoks ekle;
-		RPN(/* args */);
-		~RPN();
+		RPN();
+		RPN(const RPN &);
+		RPN &operator=(const RPN &);
 
-		static std::string param;
-		static int		count;
-		static float	val;
-		static float	first;
-		static float	second;
+	public:
+		static std::string	param;
+		static int			count;
+		static float		val;
+		static float		first;
+		static float		second;
 		static std::stack<float> _sVal;
 		static std::stack<char> _sOperant;
 
 		static	void	word_count(std::string param);
 		static bool	fill_and_check_string(std::string* arr);
 		static bool	polish_handle(std::string const  *arr);
+		~RPN();
 };
 
 #endif

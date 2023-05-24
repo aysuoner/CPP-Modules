@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:00:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/23 22:15:11 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/24 18:41:03 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int main(int argc, char **argv)
 	
 	RPN::param = argv[1];
 	RPN::word_count(RPN::param);
-    std::string arr[RPN::count]; //düz string haline getir.
+    std::string arr[RPN::count];
 	
     if (RPN::fill_and_check_string(arr) == false)
 	{
-		std::cerr << "bir rakam veya bir islem olmali";
+		std::cerr << "The token must be a digit or operation '+ - / *'";
 		return(EXIT_FAILURE);
 	}
 
