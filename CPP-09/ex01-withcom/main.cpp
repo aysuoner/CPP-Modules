@@ -6,11 +6,20 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:00:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/25 12:44:53 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/25 12:26:24 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+
+/* Ters Lehçe gösterimi (RPN), parantez ve parantez gibi ayırıcılar
+kullanılmadan matematiksel ifadeleri iletmek için bir yöntemdir.
+İşlem soldan sağa okunur, ancak bir operatöre her ulaşıldığında yürütme gerçekleştirilir
+ve her zaman son iki sayıyı işlenen olarak kullanır.
+RPN, birkaç nedenden dolayı daha hızlı hesaplamalara yol açar.
+Birincisi, depolanacak daha az bilgi olması.
+Bu nedenle, ifade ((5 - 3) * 2) için dokuz karakter depolamak yerine,
+RPN kullanan bilgisayarların yalnızca 5 3 - 2 * ifadesiyle beş karakter depolaması gerekir. */
 
 int main(int argc, char **argv)
 {
@@ -44,3 +53,13 @@ int main(int argc, char **argv)
 	}
 	return(EXIT_SUCCESS);
 }
+
+//"8  9 - 9" //invalid
+//"3 1 1 1 1 2 * * * + 2 1 5 * + -" //invalid
+//"8 4 * 3 9 - + 2 *"  valid res: 52
+//"8 4 * 3 9 - + 2"  invalid
+//"2 + 3 * 4 / 2 - 1" invalid
+//"2 3 * + 4 / 2 - 1" invalid
+//"2 3 * 4 6 5 6 2 /"  invalid
+//"1 2 1 2 1 2 + * + 3 * -" invalid
+// "8 4 6 7 3 9 + * + * -" res: -352

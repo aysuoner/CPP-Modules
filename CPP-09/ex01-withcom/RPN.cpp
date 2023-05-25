@@ -6,11 +6,26 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:59:41 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/25 12:40:23 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/25 12:29:15 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+
+/*std::stringstream bir C++ sınıf şablonudur ve <sstream> başlık dosyasında tanımlanmıştır.
+Bu sınıf, akış işlemlerini gerçekleştirmek için kullanılır.
+std::stringstream, std::istream ve std::ostream sınıflarından türetilmiştir, 
+bu nedenle hem giriş hem de çıkış işlemlerini destekler. 
+Bir std::stringstream nesnesi oluşturduğunuzda, bu nesne buffer olarak davranır ve içerisine veri yazılabilir veya okunabilir.
+std::stringstream nesnesi oluşturmak, bir buffer ile ilişkili olan bir nesne yaratmak anlamına gelir.
+Buffer, verilerin geçici olarak depolandığı bir alanı temsil eder.
+std::stringstream nesnesi oluşturduğunuzda, bellekte bir alan ayrılır
+ve bu alana karakterlerin geçici olarak depolanması için bir buffer oluşturulur.
+std::stringstream nesnesi olan ss'yi oluşturur. Bu nesne, bir bellek tamponuna sahip olacaktır.
+Bu tampon, örneğin metin verilerini depolamak için kullanılabilir.*/
+
+/* std::stringstream nesnesi, bir bellek tamponu ve akış işlemlerini gerçekleştirebilen bir sınıf şablonudur.
+Nesne oluşturulduğunda, bir bellek tamponu ayrılır ve bu tampon, akış işlemleri için bir ara bellek olarak kullanılır. */
 
 int		RPN::count = 0;
 float	RPN::val = 0;
@@ -22,14 +37,18 @@ std::stack<char> RPN::_sOperant;
 
 RPN::RPN() {}
 RPN::~RPN() {}
-RPN &RPN::operator=(const RPN &) {return *this;}
+RPN &RPN::operator=(const RPN &) {return *this; }
 RPN::RPN(const RPN &) {}
 
+/* önce onu dizgi akımı nesnesine dönüştürürüz.
+Ardından, bir döngüde (her boşlukta durduğu için) bir çıkarma operatörü
+kullanarak her kelimeyi sayarız. Son olarak, toplam kelime sayısının
+değerini yazdırıyoruz. */
 void	RPN::word_count(std::string param)
 {
-    std::stringstream ss;
+    std::stringstream ss; //or (param);
     std::string word;
-	ss << param;
+	ss << param; //or ss.str(param) //stringstream tamponuna(dizi akışı nesnesine) veri atıyorum/ekliyorum.
 	while (ss >> word)
         count++;
 }
