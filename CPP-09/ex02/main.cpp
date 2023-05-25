@@ -6,20 +6,11 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:31:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/08 18:39:12 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/25 20:32:36 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-
-/*merge: büyük dizeleri hızlı sıralar. recursive bir fonksiyonun
-dizeyi daha fazla bölünemeyene dek bölüdüğün düşün
-merge sort first divides the whole array iteratively into equal halves,
-unless the atomic values are achieved.
-
-This algorithm is one of the simplest algorithm with simple implementation
-Basically, Insertion sort is efficient for small data values
-*/
 
 int main(int argc, char **argv)
 {
@@ -46,10 +37,10 @@ int main(int argc, char **argv)
 	}
 	std::cout << std::endl;
 
-	//SORT the LIST and TAKE TIME
-	std::clock_t start_lst = std::clock();
-    std::list<int> sorted_list = mergesort(_list);
-    std::clock_t end_lst = std::clock();
+	//SORT with std:list and TAKE TIME
+	std::clock_t start_time = std::clock();
+    std::list<int> sorted_list = mergeInsertsort(_list);
+    std::clock_t end_time = std::clock();
 	
 	//PRINT AFTER
 	std::cout << "After:	";
@@ -60,17 +51,17 @@ int main(int argc, char **argv)
 	std::cout << std::endl;
 
 	//PRINT TIME for LIST
-	double elapsed_lst = static_cast<double>(end_lst - start_lst) / CLOCKS_PER_SEC * 10;
-    std::cout << "Time to process a range of " << _list.size() << " elements with list sort: " << elapsed_lst << " us" << std::endl;
+	double res_time = static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC *  1000000;
+    std::cout << "Time to process a range of " << _list.size() << " elements with std::list<int> sort: " << res_time << " us" << std::endl;
 	
-	//SORT the DEQUE and TAKE TIME,
-	start_lst = std::clock();
-    std::deque<int> sorted_deque = mergesort(_deque);
-    end_lst = std::clock();
+	//SORT with std::deque and TAKE TIME,
+	start_time = std::clock();
+    std::deque<int> sorted_deque = mergeInsertsort(_deque);
+    end_time = std::clock();
 
 	//PRINT TIME for DEQUE
-	elapsed_lst = static_cast<double>(end_lst - start_lst) / CLOCKS_PER_SEC * 10;
-    std::cout << "Time to process a range of " << _deque.size() << " elements with list sort: " << elapsed_lst << " us" << std::endl;
+	res_time = static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC * 1000000;
+    std::cout << "Time to process a range of " << _deque.size() << " elements with std::deque<int> sort: " << res_time << " us" << std::endl;
 
     return 0;
 }

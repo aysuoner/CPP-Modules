@@ -6,12 +6,55 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:22:12 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/25 21:01:23 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/25 21:00:57 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
+/* std::ifstream(Input file stream class)
+C++ standart kütüphanesinde yer alan bir sınıftır.
+Bu sınıf, bir dosya okuma işlemi gerçekleştirmek için kullanılır.
+Dosyayı açmak için open() fonksiyonu kullanılır.
+Dosya açıldıktan sonra, is_open() fonksiyonu ile dosyanın açılıp
+açılmadığı kontrol edilir. Dosya işlemi tamamlandıktan sonra,
+close() fonksiyonu ile dosya kapatılır.
+std::ifstream, ayrıca get(), getline(), read() gibi işlevlerle
+birlikte kullanılabilir. Bu işlevler, dosyadan veri okumak için kullanılır.
+
+!!!!!!Eğer dosya açıldıysa, std::ifstream file nesnesi, dosyayı temsil eden bir
+giriş akışı nesnesine dönüşür. Dosyayı temsil eden bir giriş akışı nesnesine dönüşmek,
+dosyadan veri okuyabilmek için bir araç sağlamaktır.!!!!
+
+std::ifstream nesnesi, bir dosyanın verilerini okumak için kullanılan bir giriş akışı nesnesidir.
+Dosya açıldıktan sonra, std::ifstream nesnesi, dosyadan veri okumak, dosyayı sıfırlamak
+ve dosyayı kapamak için kullanılır. Bu nesne, dosyadan veri okumak ve diğer işlemleri
+gerçekleştirmek için kullanılabilir.*/
+
+/* std::ifstream ve std::ofstream, C++ standart kütüphanesinde yer alan sınıflardır.
+std::ifstream, dosya okuma işlemleri için kullanılırken,
+std::ofstream dosya yazma işlemleri için kullanılır.
+Her iki sınıf da fstream sınıfından türetilir ve open(),
+close() ve is_open() gibi fonksiyonlarla birlikte kullanılır.
+
+std::ifstream sınıfı, getline(), get() ve read() gibi işlevlerle birlikte kullanılarak,
+dosyadan veri okunabilir.
+Ayrıca, std::ofstream sınıfı, put(), write() ve flush() gibi
+işlevlerle birlikte kullanılarak, dosyaya veri yazılabilir.
+
+C++ standart kütüphanesi, fstream sınıfı aracılığıyla hem dosya okuma hem de dosya yazma işlemlerini destekler.
+Bu sınıf, std::ifstream ve std::ofstream sınıflarının özelliklerini birleştirir ve hem okuma hem de yazma
+işlemlerini tek bir nesne aracılığıyla yapmayı mümkün kılar.
+*/
+
+/*
+file.open(fileName.c_str(), std::ios::in);
+ikinci parametre ios_base isim alanı içinde tanımlı olan önceden tanımlanmış sembolik sabitler kullanılarak oluşturulabilir.
+Dosyanın okuma modunda açılmasını gösterir. Eğer open fonksiyonunu tek parametreli kullanırsak zaten default olarak okuma modunda açar.
+std::ios::in, std::ios::out(yazma mod) std::ios::app(sona ekleme mod) std::ios::trunc(dosya açılırken içeriği siler)
+*/
+
+/* (binary search) algoritması */
 int	binary_search(const std::string& targetDate, const std::vector<std::pair<std::string, double> >& _vData)
 {
     int	up = 0;
@@ -30,8 +73,9 @@ int	binary_search(const std::string& targetDate, const std::vector<std::pair<std
             down = mid - 1;
         }
     }
+    // If the target date is not found, return the index of the nearest lower date
     if (down < 0) {
-        return -1;
+        return -1; // There is no lower date, return an invalid index
     }
 	else {
         return down;
@@ -201,9 +245,9 @@ bool	fill_input(std::ifstream &file, std::vector<std::pair<std::string, std::str
         	_vInput.push_back(std::make_pair(date, val));
         }
 		else
-			_vInput.push_back(std::make_pair("bad", "bad"));
+			_vInput.push_back(std::make_pair("bad", "bad")); //sadece bir parse girildiyse. "Bad input" hatası alsın.
 	}
-	if (_vInput.size() == 0)
+	if (_vInput.size() == 0) //dosyanın içi boşsa. file is empty hatası alır.
 		return false;
 	file.close();
 	return true;

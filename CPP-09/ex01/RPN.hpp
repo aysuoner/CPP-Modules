@@ -1,5 +1,5 @@
-#ifndef PRN_HPP
-#define PRN_HPP
+#ifndef RPN_HPP
+#define RPN_HPP
 
 #include <stack>
 #include <iostream>

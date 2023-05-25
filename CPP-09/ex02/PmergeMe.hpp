@@ -10,7 +10,7 @@
 bool	input_ctrl(int ac, char **arg, std::list<int> &_list, std::deque<int> &_deque);
 
 template <typename T>
-T merge(T &left, T &right)
+T ft_merge(T &left, T &right)
 {
     T result;
     while (!left.empty() && !right.empty())
@@ -27,14 +27,14 @@ T merge(T &left, T &right)
         }
     }
     if (!left.empty())
-        result.insert(result.end(), left.begin(), left.end());
+		result.insert(result.end(), left.begin(), left.end());
     if (!right.empty())
-        result.insert(result.end(), right.begin(), right.end());
+		result.insert(result.end(), right.begin(), right.end());
     return result;
 }
 
 template <typename T>
-T mergesort(T &m)
+T mergeInsertsort(T &m)
 {
 	T			left;
 	T			right;
@@ -54,11 +54,11 @@ T mergesort(T &m)
 		it++;
     }
 	if (left.size() > 1)
-    	left = mergesort(left);
+    	left = mergeInsertsort(left);
 	if (right.size() > 1)
-		right = mergesort(right);
+		right = mergeInsertsort(right);
 
-    T result = merge(left, right);
+    T result = ft_merge(left, right);
     return result;
 }
 

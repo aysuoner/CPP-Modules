@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <utility>
+#include <fstream>  //ofstream - ifstream //getline()
+#include <utility> //std::pair<>
 #include <algorithm>
 #include <vector>
 #include <sstream>
