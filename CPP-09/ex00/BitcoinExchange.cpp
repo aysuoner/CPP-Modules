@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:22:12 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/25 21:01:23 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/26 14:52:43 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	print_and_handle(const std::vector<std::pair<std::string, std::string> > &_
 
 void	fill_data_base(std::ifstream &file, std::vector<std::pair<std::string, double> > &_vData)
 {
-	size_t		pos;
+	int			pos;
 	std::string	line;
 	std::string	date;
 	std::string	val;
@@ -71,7 +71,7 @@ void	fill_data_base(std::ifstream &file, std::vector<std::pair<std::string, doub
 	while(std::getline(file, line))
 	{
 		pos = line.find(",");
-		if (pos != std::string::npos)
+		if (pos != -1)
 		{
         	date = line.substr(0, pos);
         	val = line.substr(pos+1);
@@ -80,46 +80,6 @@ void	fill_data_base(std::ifstream &file, std::vector<std::pair<std::string, doub
         }
 	}
 	file.close();
-}
-
-bool	is_valid_date(const std::string& date)
-{
-	char *endptr = NULL;
-	// Date format should be "yyyy-mm-dd"
-    if (date.size() != 10) {
-        return false;
-    }
-    // Check year
-    int year = std::strtol(date.substr(0, 4).c_str(), &endptr, 10);
-    if (*endptr != '\0' || year < 2009 || year > 9999 || date[4] != '-') {
-        return false;
-    }
-    // Check month
-	endptr = NULL;
-    int month = std::strtol(date.substr(5, 2).c_str(), &endptr, 10);
-    if (*endptr != '\0' || month < 1 || month > 12 || date[7] != '-' ) {
-        return false;
-    }
-    // Check day
-	endptr = NULL;
-    int day = std::strtol(date.substr(8, 2).c_str(), &endptr, 10);
-    if (*endptr != '\0' || day < 1 || day > 31 || (year == 2009 && month == 01 && day == 01)) {
-        return false;
-    }
-    // Check if day is valid for the given month
-    if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
-        return false;
-    }
-    if (month == 2) {
-        int max_day = 28;
-        if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
-            max_day = 29;
-        }
-        if (day > max_day) {
-            return false;
-        }
-    }
-    return true;
 }
 
 std::string	is_valid_value(const std::string& value)
@@ -161,6 +121,47 @@ std::string	is_valid_value(const std::string& value)
 	}
 }
 
+bool	is_valid_date(const std::string& date)
+{
+	char *endptr = NULL;
+	// Date format should be "yyyy-mm-dd"
+    if (date.size() != 10) {
+        return false;
+    }
+    // Check year
+    int year = std::strtol(date.substr(0, 4).c_str(), &endptr, 10);
+    if (*endptr != '\0' || year < 2009 || year > 9999 || date[4] != '-') {
+        return false;
+    }
+    // Check month
+	endptr = NULL;
+    int month = std::strtol(date.substr(5, 2).c_str(), &endptr, 10);
+    if (*endptr != '\0' || month < 1 || month > 12 || date[7] != '-' ) {
+        return false;
+    }
+    // Check day
+	endptr = NULL;
+    int day = std::strtol(date.substr(8, 2).c_str(), &endptr, 10);
+    if (*endptr != '\0' || day < 1 || day > 31 || (year == 2009 && month == 01 && day == 01)) {
+        return false;
+    }
+    // Check if day is valid for the given month
+    if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
+        return false;
+    }
+    if (month == 2) {
+        int max_day = 28;
+        if (year % 4 == 0)
+            max_day = 29;
+		if ((year % 100 == 0 && year % 400 != 0) || (year % 400 == 0 && year % 4000 == 0)) 
+			max_day = 28;
+        if (day > max_day) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void	mark_invalid_input(std::vector<std::pair<std::string, std::string> > &_v)
 {
 	int i = 0;
@@ -186,7 +187,7 @@ void	mark_invalid_input(std::vector<std::pair<std::string, std::string> > &_v)
 
 bool	fill_input(std::ifstream &file, std::vector<std::pair<std::string, std::string> > &_vInput)
 {
-	size_t		pos;
+	int			pos;
 	std::string	line;
 	std::string	val;
 	std::string	date;
@@ -194,7 +195,7 @@ bool	fill_input(std::ifstream &file, std::vector<std::pair<std::string, std::str
 	while (std::getline(file, line))
 	{
 		pos = line.find(" | ");
-		if (pos != std::string::npos)
+		if (pos != -1)
 		{
         	date = line.substr(0, pos);
         	val = line.substr(pos+3);
@@ -211,7 +212,7 @@ bool	fill_input(std::ifstream &file, std::vector<std::pair<std::string, std::str
 
 bool	file_check(const std::string fileName, std::ifstream &file)
 {
-    file.open(fileName.c_str(), std::ios::in);
+    file.open(fileName.c_str());
     if (!file.is_open())
     {
         std::cerr << "Error: File cannot be opened" << std::endl;
