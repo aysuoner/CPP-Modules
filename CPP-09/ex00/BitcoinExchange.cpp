@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:22:12 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/26 14:52:43 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/27 07:53:36 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 int	binary_search(const std::string& targetDate, const std::vector<std::pair<std::string, double> >& _vData)
 {
-    int	up = 0;
-	int	down = _vData.size() - 1;
+    int	left = 0;
+	int	right = _vData.size() - 1;
 	int	mid;
-    while (up <= down)
+    while (left <= right)
 	{
-        mid = (up + down) / 2;
+        mid = (left + right) / 2;
         if (_vData[mid].first == targetDate) {
             return mid;
         }
 		else if (_vData[mid].first < targetDate) {
-            up = mid + 1;
+            left = mid + 1;
         }
 		else {
-            down = mid - 1;
+            right = mid - 1;
         }
     }
-    if (down < 0) {
+    if (right < 0) {
         return -1;
     }
 	else {
-        return down;
+        return right;
     }
 }
 
@@ -124,7 +124,7 @@ std::string	is_valid_value(const std::string& value)
 bool	is_valid_date(const std::string& date)
 {
 	char *endptr = NULL;
-	// Date format should be "yyyy-mm-dd"
+	// Date format
     if (date.size() != 10) {
         return false;
     }

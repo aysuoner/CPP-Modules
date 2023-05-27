@@ -6,13 +6,12 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:22:39 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/26 14:54:20 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/27 07:35:20 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-//BAŞKA BİR MAKEFILE İLE TEST ET!!!!!!!
 //Binary_search algorithm search!
 int main(int argc, char **argv)
 {
