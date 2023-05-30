@@ -9,57 +9,53 @@
 
 bool	input_ctrl(int ac, char **arg, std::list<int> &_list, std::deque<int> &_deque);
 
-template <typename T>
-T ft_merge(T &left, T &right)
+template<typename T>
+void insertionSort(T& m)
 {
-    T result;
-    while (!left.empty() && !right.empty())
+	int temp;
+    typename T::iterator it;
+	typename T::iterator prev;
+	typename T::iterator j;
+    for (it = m.begin(); it != m.end(); ++it)
 	{
-        if (left.front() <= right.front())
-		{
-            result.push_back(left.front());
-            left.erase(left.begin());
+        temp = *it;
+        j = it;
+        while (j != m.begin()) {
+            prev = j;
+            --prev;
+            if (*prev > temp) {
+                *j = *prev;
+                --j;
+            }
+            else
+                break;
         }
-		else
-		{
-            result.push_back(right.front());
-            right.erase(right.begin());
-        }
+        *j = temp;
     }
-    if (!left.empty())
-		result.insert(result.end(), left.begin(), left.end());
-    if (!right.empty())
-		result.insert(result.end(), right.begin(), right.end());
-    return result;
 }
 
 template <typename T>
-T mergeInsertsort(T &m)
+void mergeInsertsort(T& m)
 {
-	T			left;
-	T			right;
-	int			middle;
-	typename	T::iterator it;
+    size_t	len = m.size();
+	size_t	threshold = 100;
 
-    middle = m.size() / 2;
-	it = m.begin();
-    for (int i = 0; i < middle; i++)
+	if (len > threshold)
 	{
-        left.push_back(*it);
-		it++;
-    }
-    for (unsigned int i = middle; i < m.size(); i++)
-	{
-        right.push_back(*it);
-		it++;
-    }
-	if (left.size() > 1)
-    	left = mergeInsertsort(left);
-	if (right.size() > 1)
-		right = mergeInsertsort(right);
-
-    T result = ft_merge(left, right);
-    return result;
+		typename T::iterator begin = m.begin();
+		typename T::iterator mid = m.begin();
+		std::advance(mid, m.size() / 2);
+		typename T::iterator end = m.end();
+		T left(begin, mid);
+    	T right(mid, end);
+		if (left.size() > 1)
+			mergeInsertsort(left);
+		if (right.size() > 1)
+    		mergeInsertsort(right);
+		std::merge(left.begin(), left.end(), right.begin(), right.end(), m.begin());
+	}
+    else
+    	insertionSort(m);
 }
 
 #endif

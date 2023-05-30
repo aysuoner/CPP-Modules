@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:31:15 by aoner             #+#    #+#             */
-/*   Updated: 2023/05/25 20:32:36 by aoner            ###   ########.fr       */
+/*   Updated: 2023/05/29 21:23:37 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,24 @@ int main(int argc, char **argv)
 
 	//SORT with std:list and TAKE TIME
 	std::clock_t start_time = std::clock();
-    std::list<int> sorted_list = mergeInsertsort(_list);
+    mergeInsertsort(_list);
     std::clock_t end_time = std::clock();
 	
 	//PRINT AFTER
 	std::cout << "After:	";
- 	for (std::list<int>::iterator it = sorted_list.begin(); it != sorted_list.end(); it++)
+ 	for (std::list<int>::iterator it = _list.begin(); it != _list.end(); it++)
 	{
 		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
 
 	//PRINT TIME for LIST
-	double res_time = static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC *  1000000;
+	double res_time = static_cast<double>(end_time - start_time) / (double)CLOCKS_PER_SEC *  1000000;
     std::cout << "Time to process a range of " << _list.size() << " elements with std::list<int> sort: " << res_time << " us" << std::endl;
 	
 	//SORT with std::deque and TAKE TIME,
 	start_time = std::clock();
-    std::deque<int> sorted_deque = mergeInsertsort(_deque);
+    mergeInsertsort(_deque);
     end_time = std::clock();
 
 	//PRINT TIME for DEQUE
